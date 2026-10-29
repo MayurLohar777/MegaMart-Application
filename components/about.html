@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>MegaMart | About Us — The Story Behind Smarter Shopping</title>
+  <!-- Bootstrap 5 CSS + Remix Icons + Google Fonts -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../responsive_style.css">
+  <style>
+    /* ========== GLOBAL STYLES ========== */
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+      font-family: "Urbanist", sans-serif;
+    }
+
+    html {
+      font-size: 62.5%;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      width: 100%;
+      background: #ffffff;
+      overflow-x: hidden;
+    }
+
+    :root {
+      --text-color: #008ECC;
+      --input-bg-color: #F3F9FB;
+      --logo-color: #008ECC;
+      --logo-bg: #F3F9FB;
+      --shadow-sm: 0 10px 30px -12px rgba(0,0,0,0.08);
+      --shadow-hover: 0 20px 35px -15px rgba(0,142,204,0.25);
+    }
+
+    .logo-text-color { color: var(--logo-color); }
+    .bg-logo { background-color: var(--logo-bg); }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
+    ::-webkit-scrollbar-thumb { background: var(--logo-color); border-radius: 10px; }
+    ::-webkit-scrollbar-thumb:hover { background: #0077b3; }
+
+
+
+    /* Mobile Menu Button */
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 10px;
+    }
+
+    .mobile-menu-btn i {
+      font-size: 2.8rem;
+      color: var(--text-color);
+    }
+
+    /* Mobile Navigation Icons */
+    .mobile-nav-icons {
+      display: none;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .mobile-nav-icons .nav-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: var(--logo-bg);
+      border-radius: 50%;
+      text-decoration: none;
+      transition: 0.3s;
+      position: relative;
+    }
+
+    .mobile-nav-icons .nav-icon i {
+      font-size: 2rem;
+      color: var(--text-color);
+    }
+
+    .mobile-nav-icons .nav-icon:hover {
+      background: var(--text-color);
+    }
+
+    .mobile-nav-icons .nav-icon:hover i {
+      color: white;
+    }
+
+    .mobile-cart-count {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background: #008ECC;
+      color: white;
+      border-radius: 50%;
+      padding: 2px 5px;
+      font-size: 1rem;
+      min-width: 18px;
+      text-align: center;
+    }
+
+    /* Offcanvas Menu */
+    .offcanvas-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 10000;
+      display: none;
+    }
+
+    .offcanvas-overlay.active {
+      display: block;
+    }
+
+    .offcanvas-menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 85%;
+      max-width: 350px;
+      height: 100%;
+      background: white;
+      z-index: 10001;
+      box-shadow: -5px 0 30px rgba(0, 0, 0, 0.1);
+      transition: right 0.3s ease;
+      overflow-y: auto;
+    }
+
+    .offcanvas-menu.open {
+      right: 0;
+    }
+
+    .offcanvas-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .offcanvas-header h3 {
+      font-size: 2rem;
+      color: var(--text-color);
+      margin: 0;
+    }
+
+    .close-menu {
+      background: none;
+      border: none;
+      font-size: 2.5rem;
+      cursor: pointer;
+      color: #666;
+    }
+
+    .offcanvas-body {
+      padding: 20px;
+    }
+
+    .offcanvas-search {
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    .offcanvas-search input {
+      width: 100%;
+      padding: 12px 40px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      font-size: 1.4rem;
+      background: var(--logo-bg);
+    }
+
+    .offcanvas-search i {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.8rem;
+      color: #999;
+    }
+
+    .offcanvas-nav {
+      list-style: none;
+      padding: 0;
+    }
+
+    .offcanvas-nav li {
+      margin-bottom: 15px;
+    }
+
+    .offcanvas-nav a {
+      text-decoration: none;
+      color: #333;
+      font-size: 1.6rem;
+      font-weight: 500;
+      display: block;
+      padding: 10px 0;
+      transition: 0.3s;
+    }
+
+    .offcanvas-nav a:hover {
+      color: var(--text-color);
+      padding-left: 10px;
+    }
+
+    .offcanvas-divider {
+      height: 1px;
+      background: #eee;
+      margin: 20px 0;
+    }
+
+    .offcanvas-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .offcanvas-btn {
+      padding: 12px;
+      text-align: center;
+      border-radius: 10px;
+      font-size: 1.5rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .offcanvas-btn-primary {
+      background: var(--text-color);
+      color: white;
+    }
+
+    .offcanvas-btn-outline {
+      border: 1px solid var(--text-color);
+      color: var(--text-color);
+    }
+
+    /* Responsive Breakpoints */
+    @media (max-width: 1024px) {
+      .header-fluid nav .search {
+        width: 350px;
+      }
+      .header-fluid nav .search:focus-within {
+        width: 400px;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .header-fluid nav .right_nav {
+        display: none;
+      }
+      
+      .mobile-menu-btn {
+        display: block;
+      }
+      
+      .mobile-nav-icons {
+        display: flex;
+      }
+      
+      .header-fluid nav {
+        padding: 15px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .header-fluid nav .logo h3 {
+        font-size: 2.4rem;
+      }
+      
+      .header-fluid nav .logo .logo-icon {
+        height: 40px;
+        width: 40px;
+      }
+      
+      .header-fluid nav .logo .logo-img {
+        height: 24px;
+        width: 24px;
+      }
+      
+      .mobile-nav-icons .nav-icon {
+        width: 35px;
+        height: 35px;
+      }
+      
+      .mobile-nav-icons .nav-icon i {
+        font-size: 1.6rem;
+      }
+      
+      .offcanvas-menu {
+        width: 80%;
+      }
+    }
+
+    /* ========== HERO SECTION ========== */
+    .about-hero-premium { padding: 90px 0; background: radial-gradient(circle at top right, rgba(0,142,204,.12), transparent 40%), #f8fbfd; overflow: hidden; }
+    .hero-container { max-width: 1320px; margin: auto; padding: 0 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 50px; background: #e8f8ff; color: #008ECC; font-size: 14px; font-weight: 700; }
+    .hero-content h1 { font-size: 6rem; font-weight: 900; line-height: 1.1; margin: 25px 0; color: #111827; }
+    .hero-content h1 span { color: #008ECC; }
+    .hero-content p { font-size: 1.8rem; color: #6b7280; line-height: 1.8; max-width: 650px; }
+    .hero-buttons { display: flex; gap: 18px; margin-top: 35px; flex-wrap: wrap; }
+    .btn-primary-custom { padding: 16px 32px; border-radius: 14px; background: #008ECC; color: white; text-decoration: none; font-size: 1.6rem; font-weight: 700; display: flex; align-items: center; gap: 8px; transition: .3s; }
+    .btn-primary-custom:hover { transform: translateY(-4px); background: #0077b3; color: white; }
+    .btn-secondary-custom { padding: 16px 32px; border-radius: 14px; background: white; border: 1px solid #ddd; color: #111; text-decoration: none; font-size: 1.6rem; font-weight: 700; transition: .3s; }
+    .btn-secondary-custom:hover { border-color: #008ECC; color: #008ECC; transform: translateY(-2px); }
+    .hero-stats { display: flex; gap: 50px; margin-top: 50px; }
+    .hero-stats h3 { font-size: 3rem; color: #008ECC; font-weight: 800; margin: 0; }
+    .hero-stats span { color: #6b7280; font-size: 1.4rem; }
+    .hero-visual { position: relative; }
+    .main-card { border-radius: 35px; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,.12); }
+    .main-card img { width: 100%; height: 600px; object-fit: cover; }
+    .floating-card { position: absolute; background: white; display: flex; align-items: center; gap: 15px; padding: 16px 22px; border-radius: 18px; box-shadow: 0 20px 40px rgba(0,0,0,.08); animation: float 3s ease-in-out infinite; }
+    .floating-card i { font-size: 28px; color: #008ECC; }
+    .card1 { top: 60px; left: -40px; animation-delay: 0s; }
+    .card2 { bottom: 100px; right: -30px; animation-delay: 0.5s; }
+    .card3 { bottom: 20px; left: 30px; animation-delay: 1s; }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+    /* Stats Card */
+    .stat-card-about { background: #ffffff; border-radius: 24px; padding: 2rem; text-align: center; transition: all 0.3s ease; box-shadow: var(--shadow-sm); }
+    .stat-card-about:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
+    .stat-number { font-size: 3.8rem; font-weight: 800; color: var(--logo-color); line-height: 1.2; }
+
+    /* Story & Mission Section */
+    .story-mission-section { padding: 80px 0; background: linear-gradient(180deg, #ffffff 0%, #f9fbfd 100%); }
+    .section-container { max-width: 1320px; margin: 0 auto; padding: 0 20px; }
+    .story-mission-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+    .story-card-premium, .mission-card-premium {
+      background: #ffffff; border-radius: 32px; overflow: hidden; box-shadow: var(--shadow-sm);
+      transition: all 0.4s ease; height: 100%; border: 1px solid rgba(0,0,0,0.04);
+    }
+    .story-card-premium:hover, .mission-card-premium:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover); border-color: rgba(0,142,204,0.2); }
+    .story-header, .mission-header { background: linear-gradient(135deg, #008ECC10 0%, #008ECC05 100%); padding: 30px 35px 20px; border-bottom: 1px solid rgba(0,142,204,0.1); }
+    .story-icon, .mission-icon { width: 70px; height: 70px; background: #008ECC; border-radius: 20px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+    .story-icon i, .mission-icon i { font-size: 3rem; color: white; }
+    .story-body, .mission-body { padding: 30px 35px; }
+    .story-body p, .mission-body p { font-size: 1.6rem; line-height: 1.7; color: #4a5568; margin-bottom: 20px; }
+    .mission-list { list-style: none; padding: 0; }
+    .mission-list li { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; font-size: 1.5rem; color: #2d3748; }
+    .mission-list li i { font-size: 2rem; color: #008ECC; }
+
+    /* Timeline Section */
+    .journey-timeline-section { padding: 80px 0; background: linear-gradient(180deg, #ffffff 0%, #f5f9fc 100%); position: relative; }
+    .timeline-wrapper { position: relative; margin: 60px 0 30px; }
+    .timeline-progress { position: absolute; top: 50%; left: 0; width: 100%; height: 4px; background: #e0e7ef; transform: translateY(-50%); border-radius: 4px; z-index: 1; }
+    .timeline-progress-fill { position: absolute; top: 0; left: 0; height: 100%; width: 0%; background: linear-gradient(90deg, #008ECC, #00b4ff); border-radius: 4px; transition: width 1s ease; }
+    .timeline-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; position: relative; z-index: 2; }
+    .timeline-node { text-align: center; position: relative; cursor: pointer; }
+    .timeline-marker { width: 70px; height: 70px; background: white; border: 3px solid #e0e7ef; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+    .timeline-node.active .timeline-marker { border-color: #008ECC; background: #008ECC; transform: scale(1.1); box-shadow: 0 0 0 8px rgba(0,142,204,0.2); }
+    .timeline-node.active .timeline-marker i { color: white; }
+    .timeline-marker i { font-size: 2.8rem; color: #8a9bb0; transition: all 0.3s; }
+    .timeline-content { background: white; border-radius: 24px; padding: 25px 20px; box-shadow: var(--shadow-sm); transition: all 0.4s ease; border: 1px solid rgba(0,0,0,0.04); }
+    .timeline-node.active .timeline-content { transform: translateY(-8px); box-shadow: var(--shadow-hover); border-color: rgba(0,142,204,0.2); }
+    .timeline-year { font-size: 2.6rem; font-weight: 800; color: #008ECC; margin-bottom: 8px; }
+    .timeline-title { font-size: 1.8rem; font-weight: 700; margin-bottom: 8px; color: #1a2c3e; }
+    .timeline-desc { font-size: 1.3rem; color: #6b7280; line-height: 1.5; }
+
+    /* Core Values Section */
+    .core-values-section { padding: 80px 0; background: linear-gradient(180deg, #ffffff 0%, #f8fbfd 100%); }
+    .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 50px; }
+    .value-card-modern { background: #ffffff; border-radius: 28px; padding: 32px 28px; text-align: center; transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1); border: 1px solid rgba(0,142,204,0.08); box-shadow: var(--shadow-sm); position: relative; overflow: hidden; }
+    .value-card-modern::before { content: ""; position: absolute; bottom: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, #008ECC, #00b4ff); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease; }
+    .value-card-modern:hover { transform: translateY(-10px); box-shadow: var(--shadow-hover); border-color: rgba(0,142,204,0.2); }
+    .value-card-modern:hover::before { transform: scaleX(1); }
+    .value-icon-wrapper { position: relative; width: 85px; height: 85px; margin: 0 auto 24px; display: flex; align-items: center; justify-content: center; }
+    .value-icon-glow { position: absolute; width: 85px; height: 85px; background: linear-gradient(135deg, #008ECC15 0%, #00b4ff08 100%); border-radius: 24px; transition: all 0.3s ease; }
+    .value-card-modern:hover .value-icon-glow { background: linear-gradient(135deg, #008ECC25 0%, #00b4ff15 100%); transform: scale(1.05); }
+    .value-icon-wrapper i { font-size: 3.8rem; color: #008ECC; position: relative; z-index: 2; transition: all 0.3s ease; }
+    .value-card-modern:hover .value-icon-wrapper i { transform: scale(1.08); }
+    .value-title { font-size: 2rem; font-weight: 800; margin-bottom: 12px; color: #1a2c3e; }
+    .value-description { font-size: 1.45rem; line-height: 1.55; color: #6b7280; margin-bottom: 20px; }
+    .value-feature { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: #F3F9FB; border-radius: 40px; font-size: 1.25rem; font-weight: 600; color: #008ECC; transition: all 0.3s ease; }
+    .value-card-modern:hover .value-feature { background: #E8F8FF; transform: translateY(-2px); }
+
+    /* Team Section */
+    .team-section { padding: 80px 0; background: linear-gradient(180deg, #f9fbfd 0%, #ffffff 100%); }
+    .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 35px; margin-top: 60px; }
+    .team-card-modern { background: #ffffff; border-radius: 28px; padding: 28px 24px 32px; text-align: center; transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1); border: 1px solid rgba(0,142,204,0.08); box-shadow: var(--shadow-sm); }
+    .team-card-modern:hover { transform: translateY(-10px); box-shadow: var(--shadow-hover); border-color: rgba(0,142,204,0.2); }
+    .team-image-wrapper { position: relative; width: 160px; height: 160px; margin: 0 auto 20px; }
+    .team-image-glow { position: absolute; inset: -3px; background: linear-gradient(135deg, #008ECC20, #00b4ff08); border-radius: 50%; transition: all 0.3s ease; }
+    .team-card-modern:hover .team-image-glow { background: linear-gradient(135deg, #008ECC40, #00b4ff20); transform: scale(1.02); }
+    .team-image { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; position: relative; z-index: 2; border: 3px solid #ffffff; box-shadow: 0 8px 25px rgba(0,0,0,0.1); transition: all 0.3s ease; }
+    .team-social-overlay { position: absolute; bottom: 5px; right: 5px; display: flex; gap: 6px; background: #ffffff; padding: 6px 10px; border-radius: 40px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); z-index: 3; opacity: 0; transform: translateY(10px); transition: all 0.3s ease; }
+    .team-card-modern:hover .team-social-overlay { opacity: 1; transform: translateY(0); }
+    .social-icon { width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; background: #F3F9FB; border-radius: 50%; color: #008ECC; font-size: 1.4rem; transition: all 0.2s ease; text-decoration: none; }
+    .social-icon:hover { background: #008ECC; color: white; transform: translateY(-2px); }
+    .team-name { font-size: 2rem; font-weight: 800; margin-bottom: 6px; color: #1a2c3e; }
+    .team-position { font-size: 1.3rem; font-weight: 600; color: #008ECC; margin-bottom: 14px; }
+    .team-bio { font-size: 1.35rem; line-height: 1.55; color: #6b7280; margin-bottom: 18px; }
+    .team-expertise { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 5px; }
+    .team-expertise span { display: inline-block; padding: 5px 12px; background: #F3F9FB; border-radius: 30px; font-size: 1.15rem; font-weight: 600; color: #008ECC; }
+
+    /* Testimonial Section */
+    .testimonial-section { padding: 80px 0; background: linear-gradient(180deg, #ffffff 0%, #f8fbfd 100%); }
+    .testimonial-slider { max-width: 900px; margin: 50px auto 0; position: relative; overflow: hidden; }
+    .testimonial-track { display: flex; transition: transform 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1); }
+    .testimonial-card-modern { flex: 0 0 100%; background: #ffffff; border-radius: 32px; padding: 40px 45px; box-shadow: 0 15px 40px rgba(0,0,0,0.05); border: 1px solid rgba(0,142,204,0.08); transition: all 0.3s ease; }
+    .testimonial-card-modern:hover { transform: translateY(-5px); box-shadow: 0 25px 50px -12px rgba(0,142,204,0.2); }
+    .quote-icon i { font-size: 4rem; color: #008ECC; opacity: 0.3; margin-bottom: 20px; display: inline-block; }
+    .testimonial-text { font-size: 1.8rem; line-height: 1.55; color: #2d3748; margin-bottom: 30px; font-style: italic; }
+    .testimonial-author { display: flex; align-items: center; gap: 18px; }
+    .author-image { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; border: 3px solid #008ECC20; }
+    .author-info h4 { font-size: 1.7rem; font-weight: 700; margin-bottom: 4px; color: #1a2c3e; }
+    .rating { color: #ffc107; font-size: 1.3rem; letter-spacing: 2px; margin-bottom: 4px; }
+    .slider-nav { display: flex; align-items: center; justify-content: center; gap: 30px; margin-top: 40px; }
+    .slider-btn { width: 45px; height: 45px; border-radius: 50%; background: #ffffff; border: 1px solid #e0e7ef; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; color: #008ECC; font-size: 2rem; }
+    .slider-btn:hover { background: #008ECC; border-color: #008ECC; color: white; transform: scale(1.05); }
+    .slider-dots { display: flex; gap: 12px; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; background: #cbd5e0; cursor: pointer; transition: all 0.3s ease; }
+    .dot.active { width: 28px; background: #008ECC; border-radius: 20px; }
+
+    /* CTA Section */
+    .cta-section { padding: 80px 0 100px; background: linear-gradient(135deg, #0a1622 0%, #0d1a28 100%); position: relative; }
+    .cta-section::before { content: ""; position: absolute; top: -50%; right: -20%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(0,142,204,0.15) 0%, transparent 70%); border-radius: 50%; pointer-events: none; }
+    .cta-wrapper { background: linear-gradient(135deg, #0f1e2d 0%, #0a1622 100%); border-radius: 48px; padding: 60px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; border: 1px solid rgba(0,142,204,0.3); box-shadow: 0 30px 60px -20px rgba(0,0,0,0.5); }
+    .cta-badge { display: inline-block; padding: 6px 16px; background: rgba(0,142,204,0.15); border: 1px solid rgba(0,142,204,0.3); border-radius: 60px; font-size: 1.2rem; font-weight: 600; color: #00b4ff; margin-bottom: 24px; }
+    .cta-title { font-size: 3.2rem; font-weight: 800; line-height: 1.2; margin-bottom: 20px; color: #ffffff; }
+    .cta-description { font-size: 1.6rem; line-height: 1.6; color: #a0aec0; margin-bottom: 30px; }
+    .cta-features { display: flex; flex-wrap: wrap; gap: 25px; margin-bottom: 35px; }
+    .cta-feature { display: flex; align-items: center; gap: 10px; color: #cbd5e0; font-size: 1.4rem; }
+    .cta-feature i { font-size: 2rem; color: #008ECC; }
+    .cta-buttons { display: flex; gap: 20px; flex-wrap: wrap; }
+    .btn-cta-primary { display: inline-flex; align-items: center; gap: 10px; padding: 14px 32px; background: linear-gradient(95deg, #008ECC, #00b4ff); color: white; text-decoration: none; border-radius: 60px; font-size: 1.6rem; font-weight: 700; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,142,204,0.3); }
+    .btn-cta-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,142,204,0.4); }
+    .btn-cta-secondary { display: inline-flex; align-items: center; gap: 10px; padding: 14px 32px; background: transparent; border: 2px solid rgba(0,142,204,0.5); color: #008ECC; text-decoration: none; border-radius: 60px; font-size: 1.6rem; font-weight: 700; transition: all 0.3s ease; }
+    .btn-cta-secondary:hover { background: rgba(0,142,204,0.1); border-color: #008ECC; transform: translateY(-3px); }
+    .cta-stats { display: flex; justify-content: center; gap: 30px; margin-bottom: 30px; flex-wrap: wrap; }
+    .cta-stats .stat-item { display: flex; align-items: center; gap: 12px; background: rgba(255,255,255,0.05); padding: 15px 20px; border-radius: 24px; backdrop-filter: blur(10px); }
+    .cta-stats .stat-item i { font-size: 2.8rem; color: #008ECC; }
+    .cta-stats .stat-item h3 { font-size: 2rem; font-weight: 800; color: white; margin: 0; }
+    .cta-stats .stat-item p { font-size: 1.2rem; color: #a0aec0; margin: 0; }
+    .cta-offer-badge { background: linear-gradient(135deg, #1a2a3a, #0f1a25); border-radius: 24px; padding: 20px; text-align: center; border: 1px solid rgba(0,142,204,0.3); }
+    .cta-offer-badge span { display: block; font-size: 1.2rem; color: #00b4ff; margin-bottom: 8px; }
+    .cta-offer-badge strong { display: block; font-size: 2.8rem; font-weight: 800; color: white; margin-bottom: 5px; }
+
+    /* Section Headers */
+    .section-tag { display: inline-block; padding: 0.6rem 1.6rem; background: linear-gradient(135deg, #E8F8FF 0%, #DCF2FA 100%); color: #008ECC; border-radius: 60px; font-size: 1.3rem; font-weight: 700; margin-bottom: 1.5rem; }
+    .section-title { font-size: 3.6rem; font-weight: 800; margin-bottom: 1.2rem; color: #1a2c3e; letter-spacing: -0.5px; }
+    .section-subtitle { color: #6b7280; font-size: 1.6rem; max-width: 600px; margin: 0 auto; }
+
+    /* Scroll Reveal */
+    .reveal-on-scroll { opacity: 0; transform: translateY(35px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal-on-scroll.revealed { opacity: 1; transform: translateY(0); }
+
+    /* Footer */
+    
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      .hero-container, .story-mission-grid, .cta-wrapper { grid-template-columns: 1fr; }
+      .values-grid, .team-grid { grid-template-columns: repeat(2, 1fr); }
+      .timeline-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+      .timeline-progress { display: none; }
+      .hero-content h1 { font-size: 4rem; }
+      .section-title { font-size: 3rem; }
+      .cta-title { font-size: 2.6rem; }
+    }
+    @media (max-width: 768px) {
+      .values-grid, .team-grid { grid-template-columns: 1fr; }
+      .section-title { font-size: 2.4rem; }
+      .testimonial-card-modern { padding: 25px 20px; }
+      .testimonial-text { font-size: 1.5rem; }
+      .testimonial-author { flex-direction: column; text-align: center; }
+      .cta-wrapper { padding: 30px 25px; }
+      .cta-title { font-size: 2rem; }
+      .hero-stats { flex-wrap: wrap; justify-content: center; gap: 25px; }
+      .footer_section { flex-direction: column; text-align: center; align-items: center; }
+      .footer_list { justify-content: center; text-align: center; }
+    }
+    @media (max-width: 480px) {
+      .section-title { font-size: 2rem; }
+      .hero-content h1 { font-size: 3rem; }
+      .hero-buttons { flex-direction: column; align-items: stretch; }
+      .btn-primary-custom, .btn-secondary-custom { justify-content: center; }
+    }
+  </style>
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="../responsive_style.css" />
+</head>
+<body>
+
+  <header class="header-fluid">
+    <nav>
+      <div class="logo">
+        <img src="../img/download.svg" class="logo-img" alt="logo" />
+        <h3>MegaMart</h3>
+      </div>
+      <div class="resp_icon">
+        <img src="../img/Search.png" alt="search" />
+        <img src="../img/user.png" alt="user" />
+        <img src="../img/Buy.png" alt="cart" />
+      </div>
+      <div class="right_nav">
+        <div class="search">
+          <input type="text" placeholder="Search essentials, groceries and more..." />
+          <img src="../img/Search.png" alt="search" class="search-img" />
+          <img src="../img/list.png" alt="menu" class="list-img" />
+        </div>
+        <div class="login-page">
+          <i class="ri-user-3-line"></i>
+          <a href="signin.html">Sign Up/Sign In</a>
+          <div class="line"></div>
+          <img src="../img/Buy.png" alt="cart" />
+          <a href="cart.html">Cart <span class="cart-badge cart-count">0</span></a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+<!-- ==================== HERO SECTION ==================== -->
+<section class="about-hero-premium">
+  <div class="hero-container">
+    <div class="hero-content reveal-on-scroll">
+      <span class="hero-badge"><i class="ri-verified-badge-fill"></i> India's Trusted Shopping Platform</span>
+      <h1>Making Online Shopping <span>Smarter, Faster</span> & More Reliable</h1>
+      <p>MegaMart connects thousands of customers with top brands, premium products, and lightning-fast delivery — all in one seamless shopping experience.</p>
+      <div class="hero-buttons">
+        <a href="#" class="btn-primary-custom">Start Shopping <i class="ri-arrow-right-line"></i></a>
+        <a href="#" class="btn-secondary-custom">Our Journey</a>
+      </div>
+      <div class="hero-stats">
+        <div><h3>50K+</h3><span>Customers</span></div>
+        <div><h3>12K+</h3><span>Products</span></div>
+        <div><h3>500+</h3><span>Brands</span></div>
+      </div>
+    </div>
+    <div class="hero-visual reveal-on-scroll">
+      <div class="main-card"><img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=600&h=600&fit=crop" alt="shopping" /></div>
+      <div class="floating-card card1"><i class="ri-truck-line"></i><div><h4>24H Delivery</h4><p>Across India</p></div></div>
+      <div class="floating-card card2"><i class="ri-shield-check-line"></i><div><h4>100% Genuine</h4><p>Verified Products</p></div></div>
+      <div class="floating-card card3"><i class="ri-star-smile-line"></i><div><h4>4.9 Rating</h4><p>Trusted by Users</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== STATS SECTION ==================== -->
+<section class="container py-4">
+  <div class="row g-4" id="statsSection">
+    <div class="col-md-3 col-6 reveal-on-scroll"><div class="stat-card-about"><div class="stat-number counter" data-target="52480">0</div><p class="fw-semibold mt-2">Happy Customers</p></div></div>
+    <div class="col-md-3 col-6 reveal-on-scroll"><div class="stat-card-about"><div class="stat-number counter" data-target="12450">0</div><p class="fw-semibold mt-2">Products</p></div></div>
+    <div class="col-md-3 col-6 reveal-on-scroll"><div class="stat-card-about"><div class="stat-number counter" data-target="580">0</div><p class="fw-semibold mt-2">Premium Brands</p></div></div>
+    <div class="col-md-3 col-6 reveal-on-scroll"><div class="stat-card-about"><div class="stat-number counter" data-target="99">0</div><p class="fw-semibold mt-2">Satisfaction %</p></div></div>
+  </div>
+</section>
+
+<!-- ==================== STORY & MISSION ==================== -->
+<section class="story-mission-section">
+  <div class="section-container">
+    <div class="story-mission-grid">
+      <div class="story-card-premium reveal-on-scroll">
+        <div class="story-header"><div class="story-icon"><i class="ri-quill-pen-line"></i></div><h2>Our <span class="logo-text-color">Story</span></h2><span class="story-sub">— FROM A DREAM TO REALITY</span></div>
+        <div class="story-body"><p><strong>MegaMart wasn't born overnight.</strong> It started in 2023 with a small team of passionate innovators who believed online shopping in India deserved a revolution — built on <strong>trust, speed, and genuine care</strong>.</p><p>What began as a humble vision has now transformed into a thriving marketplace serving <strong>50,000+ happy customers</strong> across the nation, partnering with <strong>500+ trusted brands</strong>.</p></div>
+      </div>
+      <div class="mission-card-premium reveal-on-scroll">
+        <div class="mission-header"><div class="mission-icon"><i class="ri-flag-line"></i></div><h2>Our <span class="logo-text-color">Mission</span></h2><span class="mission-sub">— WHY WE EXIST</span></div>
+        <div class="mission-body"><p>To create India's most trusted and delightful shopping experience. Every Indian deserves access to authentic products at fair prices, delivered with care and speed.</p><ul class="mission-list"><li><i class="ri-checkbox-circle-fill"></i> <strong>100% Authentic Products</strong></li><li><i class="ri-checkbox-circle-fill"></i> <strong>Lightning Fast Delivery</strong></li><li><i class="ri-checkbox-circle-fill"></i> <strong>Hassle-Free Returns</strong></li><li><i class="ri-checkbox-circle-fill"></i> <strong>24/7 Customer Support</strong></li></ul></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== TIMELINE JOURNEY ==================== -->
+<section class="journey-timeline-section">
+  <div class="section-container">
+    <div class="text-center reveal-on-scroll"><span class="section-tag"><i class="ri-calendar-todo-line me-1"></i> Our Timeline</span><h2 class="section-title">The MegaMart <span class="logo-text-color">Journey</span></h2><p class="section-subtitle">Key milestones that shaped our path to excellence</p></div>
+    <div class="timeline-wrapper">
+      <div class="timeline-progress"><div class="timeline-progress-fill" id="progressFill"></div></div>
+      <div class="timeline-grid">
+        <div class="timeline-node" data-year="2023"><div class="timeline-marker"><i class="ri-rocket-line"></i></div><div class="timeline-content"><div class="timeline-year">2023</div><div class="timeline-title">The Beginning</div><div class="timeline-desc">Idea inception & founding team assembled</div></div></div>
+        <div class="timeline-node" data-year="2024"><div class="timeline-marker"><i class="ri-store-3-line"></i></div><div class="timeline-content"><div class="timeline-year">2024</div><div class="timeline-title">Official Launch</div><div class="timeline-desc">Platform goes live, serves 10,000+ customers</div></div></div>
+        <div class="timeline-node" data-year="2025"><div class="timeline-marker"><i class="ri-award-line"></i></div><div class="timeline-content"><div class="timeline-year">2025</div><div class="timeline-title">Exponential Growth</div><div class="timeline-desc">500+ brands onboarded, pan-India shipping</div></div></div>
+        <div class="timeline-node" data-year="2026"><div class="timeline-marker"><i class="ri-star-line"></i></div><div class="timeline-content"><div class="timeline-year">2026</div><div class="timeline-title">The Future</div><div class="timeline-desc">50,000+ family members, setting new standards</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CORE VALUES ==================== -->
+<section class="core-values-section">
+  <div class="section-container">
+    <div class="text-center reveal-on-scroll"><span class="section-tag"><i class="ri-heart-line me-1"></i> What Drives Us</span><h2 class="section-title">Our Core <span class="logo-text-color">Values</span></h2><p class="section-subtitle">The principles that guide everything we do at MegaMart</p></div>
+    <div class="values-grid">
+      <div class="value-card-modern reveal-on-scroll"><div class="value-icon-wrapper"><div class="value-icon-glow"></div><i class="ri-shield-star-line"></i></div><h3 class="value-title">Trust & Transparency</h3><p class="value-description">No hidden costs, genuine products, and honest customer reviews.</p><div class="value-feature"><i class="ri-checkbox-circle-fill"></i><span>100% Authentic</span></div></div>
+      <div class="value-card-modern reveal-on-scroll"><div class="value-icon-wrapper"><div class="value-icon-glow"></div><i class="ri-flashlight-line"></i></div><h3 class="value-title">Speed & Reliability</h3><p class="value-description">Lightning-fast delivery with real-time tracking.</p><div class="value-feature"><i class="ri-checkbox-circle-fill"></i><span>Same-Day Delivery</span></div></div>
+      <div class="value-card-modern reveal-on-scroll"><div class="value-icon-wrapper"><div class="value-icon-glow"></div><i class="ri-customer-service-2-line"></i></div><h3 class="value-title">Customer First</h3><p class="value-description">24/7 dedicated support and hassle-free returns.</p><div class="value-feature"><i class="ri-checkbox-circle-fill"></i><span>7-Day Returns</span></div></div>
+      <div class="value-card-modern reveal-on-scroll"><div class="value-icon-wrapper"><div class="value-icon-glow"></div><i class="ri-brain-line"></i></div><h3 class="value-title">Continuous Innovation</h3><p class="value-description">Leveraging AI to personalize your shopping experience.</p><div class="value-feature"><i class="ri-checkbox-circle-fill"></i><span>AI-Powered</span></div></div>
+      <div class="value-card-modern reveal-on-scroll"><div class="value-icon-wrapper"><div class="value-icon-glow"></div><i class="ri-leaf-line"></i></div><h3 class="value-title">Eco-Conscious</h3><p class="value-description">Sustainable practices with eco-friendly packaging.</p><div class="value-feature"><i class="ri-checkbox-circle-fill"></i><span>Recyclable</span></div></div>
+      <div class="value-card-modern reveal-on-scroll"><div class="value-icon-wrapper"><div class="value-icon-glow"></div><i class="ri-award-line"></i></div><h3 class="value-title">Commitment to Excellence</h3><p class="value-description">Every product, every delivery — nothing less than excellence.</p><div class="value-feature"><i class="ri-checkbox-circle-fill"></i><span>Quality Checked</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== MEET THE TEAM ==================== -->
+<section class="team-section">
+  <div class="section-container">
+    <div class="text-center reveal-on-scroll"><span class="section-tag"><i class="ri-team-line me-1"></i> The People Behind MegaMart</span><h2 class="section-title">Meet the <span class="logo-text-color">Visionaries</span></h2><p class="section-subtitle">Passionate leaders driving innovation and excellence every day</p></div>
+    <div class="team-grid">
+      <div class="team-card-modern reveal-on-scroll"><div class="team-image-wrapper"><div class="team-image-glow"></div><img src="https://placehold.co/400x400/F3F9FB/008ECC?text=Mayur&font=montserrat" class="team-image"><div class="team-social-overlay"><a href="#" class="social-icon"><i class="ri-linkedin-fill"></i></a><a href="#" class="social-icon"><i class="ri-twitter-x-fill"></i></a></div></div><h3 class="team-name">Mayur Sharma</h3><p class="team-position">Founder & CEO</p><p class="team-bio">Former e-commerce leader with 15+ years of experience.</p><div class="team-expertise"><span>Leadership</span><span>Visionary</span></div></div>
+      <div class="team-card-modern reveal-on-scroll"><div class="team-image-wrapper"><div class="team-image-glow"></div><img src="https://placehold.co/400x400/F3F9FB/008ECC?text=Sneha&font=montserrat" class="team-image"><div class="team-social-overlay"><a href="#" class="social-icon"><i class="ri-linkedin-fill"></i></a><a href="#" class="social-icon"><i class="ri-instagram-line"></i></a></div></div><h3 class="team-name">Sneha Iyer</h3><p class="team-position">Head of Operations</p><p class="team-bio">Ensures every order reaches you perfectly.</p><div class="team-expertise"><span>Supply Chain</span><span>Logistics</span></div></div>
+      <div class="team-card-modern reveal-on-scroll"><div class="team-image-wrapper"><div class="team-image-glow"></div><img src="https://placehold.co/400x400/F3F9FB/008ECC?text=Raj&font=montserrat" class="team-image"><div class="team-social-overlay"><a href="#" class="social-icon"><i class="ri-linkedin-fill"></i></a><a href="#" class="social-icon"><i class="ri-github-fill"></i></a></div></div><h3 class="team-name">Raj Khanna</h3><p class="team-position">Chief Product Officer</p><p class="team-bio">Crafts seamless shopping experiences.</p><div class="team-expertise"><span>Product Strategy</span><span>UX Design</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== TESTIMONIAL SECTION ==================== -->
+<section class="testimonial-section">
+  <div class="section-container">
+    <div class="text-center reveal-on-scroll"><span class="section-tag"><i class="ri-chat-quote-line me-1"></i> Customer Love</span><h2 class="section-title">What Our <span class="logo-text-color">Customers</span> Say</h2><p class="section-subtitle">Real stories from real shoppers who trust MegaMart everyday</p></div>
+    <div class="testimonial-slider">
+      <div class="testimonial-track" id="testimonialTrack">
+        <div class="testimonial-card-modern"><div class="quote-icon"><i class="ri-double-quotes-l"></i></div><p class="testimonial-text">"MegaMart has completely transformed my online shopping experience. Lightning fast delivery and authentic products!"</p><div class="testimonial-author"><img src="https://placehold.co/60x60/F3F9FB/008ECC?text=PM&font=montserrat" class="author-image"><div class="author-info"><h4>Priya Mehta</h4><div class="rating">★★★★★</div><span>Verified Buyer</span></div></div></div>
+        <div class="testimonial-card-modern"><div class="quote-icon"><i class="ri-double-quotes-l"></i></div><p class="testimonial-text">"The variety of products and ease of navigation is outstanding. MegaMart is my go-to shopping platform!"</p><div class="testimonial-author"><img src="https://placehold.co/60x60/F3F9FB/008ECC?text=RK&font=montserrat" class="author-image"><div class="author-info"><h4>Rahul Kapoor</h4><div class="rating">★★★★★</div><span>Verified Buyer</span></div></div></div>
+        <div class="testimonial-card-modern"><div class="quote-icon"><i class="ri-double-quotes-l"></i></div><p class="testimonial-text">"Fresh produce, competitive prices, and the subscription service saves me so much time. Highly recommended!"</p><div class="testimonial-author"><img src="https://placehold.co/60x60/F3F9FB/008ECC?text=NS&font=montserrat" class="author-image"><div class="author-info"><h4>Neha Sharma</h4><div class="rating">★★★★★</div><span>Verified Buyer</span></div></div></div>
+      </div>
+      <div class="slider-nav"><button class="slider-btn prev-btn" id="prevBtn"><i class="ri-arrow-left-s-line"></i></button><div class="slider-dots" id="sliderDots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span></div><button class="slider-btn next-btn" id="nextBtn"><i class="ri-arrow-right-s-line"></i></button></div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CTA SECTION ==================== -->
+<section class="cta-section">
+  <div class="section-container">
+    <div class="cta-wrapper reveal-on-scroll">
+      <div class="cta-content"><div class="cta-badge">✨ Limited Time Offer</div><h2 class="cta-title">Ready to experience <span class="logo-text-color">smarter shopping</span>?</h2><p class="cta-description">Join 50,000+ happy customers and discover why MegaMart is India's fastest-growing e-commerce platform.</p><div class="cta-features"><div class="cta-feature"><i class="ri-truck-line"></i><span>Free Shipping on ₹499+</span></div><div class="cta-feature"><i class="ri-shield-check-line"></i><span>100% Secure Payments</span></div><div class="cta-feature"><i class="ri-customer-service-2-line"></i><span>24/7 Customer Support</span></div></div><div class="cta-buttons"><a href="#" class="btn-cta-primary">Start Shopping Now <i class="ri-arrow-right-s-line"></i></a><a href="#" class="btn-cta-secondary">Download App <i class="ri-apps-2-line"></i></a></div></div>
+      <div class="cta-visual"><div class="cta-stats"><div class="stat-item"><i class="ri-user-heart-fill"></i><div><h3>50K+</h3><p>Happy Customers</p></div></div><div class="stat-item"><i class="ri-shopping-bag-fill"></i><div><h3>12K+</h3><p>Products</p></div></div><div class="stat-item"><i class="ri-star-fill"></i><div><h3>4.9</h3><p>Rating</p></div></div></div><div class="cta-offer-badge"><span>🎁 First Order</span><strong>10% OFF</strong><small>Use Code: MEGA10</small></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer>
+      <img src="../img/footer bg.png" alt="" class="footer_bg" />
+      <div class="footer_section">
+        <div class="footer_aboutapp">
+          <h2>MegaMart</h2>
+
+          <div class="footer_aboutapp1">
+            <span class="contact">Contact Us</span>
+            <div class="whatsapp">
+              <div><img src="../img/footer_whatsapp.png" alt="" /></div>
+              <div>
+                <span>Whats App</span>
+                <p>+1 202-918-2132</p>
+              </div>
+            </div>
+            <div class="call">
+              <div><img src="../img/footer call.png" alt="" /></div>
+              <div>
+                <span>Call Us</span>
+                <p>+1 202-918-2132</p>
+              </div>
+            </div>
+            <span class="download">Download App</span>
+            <div class="footer_img">
+              <img src="../img/footer app store.png" alt="" class="app" />
+              <img src="../img/footer google play.png" alt="" class="play" />
+            </div>
+          </div>
+        </div>
+
+        <div class="footer_list">
+          <div class="list1">
+            <div class="list_heading">
+              <h3>Most Popular Categories</h3>
+            </div>
+            <ul>
+              <li class="l1">Staples</li>
+              <li class="l2">Beverages</li>
+              <li class="l3">Personal Care</li>
+              <li class="l4">Home Care</li>
+              <li class="l5">Baby Care</li>
+              <li class="l6">Vegetables & Fruits</li>
+              <li class="l7">Snacks & Foods</li>
+              <li class="l8">Dairy & Bakery</li>
+            </ul>
+          </div>
+
+          <div class="list2">
+            <div class="list_heading2">
+              <h3>Customer Services</h3>
+            </div>
+            <ul>
+              <li class="l9"><a href="../components/about.html">About Us</a></li>
+              <li class="l10">Terms & Conditions</li>
+              <li class="l11"> <a href="../components/contact.html">FAQ</a></li>
+              <li class="l12">Privacy Policy</li>
+              <li class="l13">E-waste Policy</li>
+              <li class="l14">Cancellation & Return Policy</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>© 2022 All rights reserved. Reliance Retail Ltd.</p>
+      </div>
+    </footer>
+
+<script src="../script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+
+  // ========== SCROLL REVEAL ==========
+  const revealElements = document.querySelectorAll('.reveal-on-scroll');
+  function checkReveal() {
+    revealElements.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight - 80) el.classList.add('revealed');
+    });
+  }
+  window.addEventListener('load', checkReveal);
+  window.addEventListener('scroll', checkReveal);
+
+  // ========== COUNTER ANIMATION ==========
+  const counters = document.querySelectorAll('.counter');
+  let countersStarted = false;
+  function startCounters() {
+    if (countersStarted) return;
+    countersStarted = true;
+    counters.forEach(counter => {
+      const target = parseInt(counter.getAttribute('data-target'), 10);
+      let current = 0;
+      const increment = Math.ceil(target / 80);
+      const updateCounter = () => {
+        current += increment;
+        if (current < target) {
+          counter.innerText = current;
+          requestAnimationFrame(updateCounter);
+        } else {
+          counter.innerText = target.toLocaleString();
+        }
+      };
+      updateCounter();
+    });
+  }
+  const statsSection = document.getElementById('statsSection');
+  const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if (entry.isIntersecting) { startCounters(); statsObserver.disconnect(); } });
+  }, { threshold: 0.3 });
+  if (statsSection) statsObserver.observe(statsSection);
+
+  // ========== TIMELINE ANIMATION ==========
+  const timelineNodes = document.querySelectorAll('.timeline-node');
+  const progressFill = document.getElementById('progressFill');
+  function updateTimeline() {
+    const section = document.querySelector('.journey-timeline-section');
+    if (!section) return;
+    const sectionRect = section.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+    const sectionProgress = Math.min(1, Math.max(0, (windowHeight - sectionRect.top) / (windowHeight + sectionRect.height)));
+    if (progressFill) progressFill.style.width = (sectionProgress * 100) + '%';
+    timelineNodes.forEach((node, index) => {
+      const nodeRect = node.getBoundingClientRect();
+      const isVisible = nodeRect.top < windowHeight - 100 && nodeRect.bottom > 100;
+      if (isVisible && sectionProgress > (index * 0.2)) node.classList.add('active');
+      else if (sectionProgress < (index * 0.15)) node.classList.remove('active');
+    });
+  }
+  if (timelineNodes.length > 0) {
+    window.addEventListener('scroll', updateTimeline);
+    window.addEventListener('load', updateTimeline);
+    setTimeout(updateTimeline, 500);
+  }
+
+  // ========== TESTIMONIAL SLIDER ==========
+  const testimonialTrack = document.getElementById('testimonialTrack');
+  const testimonialSlides = document.querySelectorAll('.testimonial-card-modern');
+  const sliderDots = document.querySelectorAll('.dot');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  let currentSlideIndex = 0;
+  let totalSlides = testimonialSlides.length;
+  let autoSlideInterval;
+
+  function updateSlider(index) {
+    if (index < 0) index = 0;
+    if (index >= totalSlides) index = totalSlides - 1;
+    if (testimonialTrack) testimonialTrack.style.transform = `translateX(-${index * 100}%)`;
+    if (sliderDots.length > 0) sliderDots.forEach((dot, i) => { if (i === index) dot.classList.add('active'); else dot.classList.remove('active'); });
+    currentSlideIndex = index;
+  }
+  function nextSlide() { updateSlider(currentSlideIndex < totalSlides - 1 ? currentSlideIndex + 1 : 0); }
+  function prevSlide() { updateSlider(currentSlideIndex > 0 ? currentSlideIndex - 1 : totalSlides - 1); }
+  function startAutoSlide() { if (autoSlideInterval) clearInterval(autoSlideInterval); autoSlideInterval = setInterval(nextSlide, 5000); }
+  function stopAutoSlide() { if (autoSlideInterval) clearInterval(autoSlideInterval); }
+  if (prevBtn && nextBtn) { prevBtn.addEventListener('click', () => { stopAutoSlide(); prevSlide(); startAutoSlide(); }); nextBtn.addEventListener('click', () => { stopAutoSlide(); nextSlide(); startAutoSlide(); }); }
+  if (sliderDots.length > 0) sliderDots.forEach((dot, index) => { dot.addEventListener('click', () => { stopAutoSlide(); updateSlider(index); startAutoSlide(); }); });
+  const testimonialSlider = document.querySelector('.testimonial-slider');
+  if (testimonialSlider) { testimonialSlider.addEventListener('mouseenter', stopAutoSlide); testimonialSlider.addEventListener('mouseleave', startAutoSlide); }
+  if (totalSlides > 0) { updateSlider(0); startAutoSlide(); }
+
+  console.log("MegaMart About Us page loaded successfully!");
+</script>
+</body>
+</html>

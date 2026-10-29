@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Apple · Pro Features</title>
+  <!-- Google Fonts + Remix Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="../responsive_style.css" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Urbanist', sans-serif; }
+
+    body {
+      background: #f8fafc;
+      padding: 0;
+    }
+
+    /* ----- main card: glassmorphism premium container with balanced width ----- */
+    .apple-brand-section {
+      max-width: 1200px;  /* balanced, not too wide */
+      width: 100%;
+      background: rgba(255, 255, 255, 0.35);
+      backdrop-filter: blur(22px) saturate(200%);
+      -webkit-backdrop-filter: blur(22px) saturate(200%);
+      border-radius: 56px;
+      padding: 36px 40px 44px;
+      box-shadow: 0 50px 120px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(255, 255, 255, 0.6) inset;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      transition: all 0.3s ease;
+      position: relative;
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(24px) saturate(180%);
+    }
+
+    /* ----- floating glow orbs (ambient) ----- */
+    .apple-brand-section::before {
+      content: '';
+      position: absolute;
+      top: -10%;
+      left: -5%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(0, 142, 204, 0.07), transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+      animation: floatOrb 16s ease-in-out infinite;
+    }
+    .apple-brand-section::after {
+      content: '';
+      position: absolute;
+      bottom: -8%;
+      right: -5%;
+      width: 350px;
+      height: 350px;
+      background: radial-gradient(circle, rgba(255, 215, 0, 0.05), transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+      animation: floatOrb 18s ease-in-out infinite reverse;
+    }
+    @keyframes floatOrb {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(-20px, 25px) scale(1.08); }
+    }
+
+    /* ----- all content relative to orbs ----- */
+    .brand-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ----- 1. HERO BANNER — refined with your project's color palette (deep navy to teal) ----- */
+    .hero-banner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      background: linear-gradient(145deg, #0b1f33 0%, #0d2b4a 45%, #0077a8 100%);
+      border-radius: 44px;
+      padding: 0 0 0 44px;
+      align-items: center;
+      overflow: hidden;
+      box-shadow: 0 40px 80px rgba(0, 70, 120, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      margin-bottom: 48px;
+      position: relative;
+      min-height: 360px;
+    }
+    .hero-banner::before {
+      content: '';
+      position: absolute;
+      top: -30%;
+      right: -5%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(255, 215, 0, 0.05), transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      animation: floatBlob 18s ease-in-out infinite;
+    }
+    .hero-banner::after {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      left: -8%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(0, 142, 204, 0.08), transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      animation: floatBlob 14s ease-in-out infinite reverse;
+    }
+    @keyframes floatBlob {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(-20px, 20px) scale(1.04); }
+    }
+
+    .hero-text {
+      position: relative;
+      z-index: 2;
+      padding: 36px 0 36px 0;
+    }
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 215, 0, 0.12);
+      backdrop-filter: blur(6px);
+      padding: 5px 20px;
+      border-radius: 60px;
+      border: 1px solid rgba(255, 215, 0, 0.08);
+      color: #ffd700;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      margin-bottom: 14px;
+    }
+    .hero-text h1 {
+      font-size: 54px;
+      font-weight: 900;
+      color: white;
+      letter-spacing: -2px;
+      line-height: 1.04;
+      margin-bottom: 10px;
+    }
+    .hero-text h1 span {
+      color: #ffd700;
+      background: linear-gradient(135deg, #ffd700, #f5b700);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-text p {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 17px;
+      max-width: 400px;
+      line-height: 1.7;
+      font-weight: 400;
+      margin-bottom: 24px;
+    }
+    .hero-cta {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .btn-gold {
+      padding: 13px 36px;
+      background: linear-gradient(135deg, #ffd700, #f59e0b);
+      border: none;
+      border-radius: 60px;
+      color: #0b1120;
+      font-weight: 700;
+      font-size: 15px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      box-shadow: 0 10px 35px rgba(255, 215, 0, 0.2);
+    }
+    .btn-gold:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 16px 50px rgba(255, 215, 0, 0.35);
+    }
+    .btn-glass {
+      padding: 13px 36px;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 60px;
+      color: white;
+      font-weight: 700;
+      font-size: 15px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .btn-glass:hover {
+      background: rgba(255, 255, 255, 0.12);
+      transform: translateY(-5px);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* hero visual — feature cards */
+    .hero-visual {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 300px;
+      background: radial-gradient(circle at 50% 40%, rgba(0, 142, 204, 0.04), transparent 70%);
+      padding: 20px;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .feature-icon-card {
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 36px;
+      padding: 24px 20px;
+      text-align: center;
+      min-width: 110px;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+      animation: floatIcon 6s ease-in-out infinite;
+      background: rgba(0, 0, 0, 0.12);
+    }
+    .feature-icon-card:nth-child(2) { animation-delay: 2s; }
+    .feature-icon-card:nth-child(3) { animation-delay: 4s; }
+    .feature-icon-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 215, 0, 0.12);
+    }
+    .feature-icon-card i {
+      font-size: 42px;
+      color: #ffd700;
+      margin-bottom: 8px;
+      display: block;
+      filter: drop-shadow(0 4px 12px rgba(255, 215, 0, 0.15));
+    }
+    .feature-icon-card h4 {
+      color: white;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: -0.2px;
+    }
+    .feature-icon-card p {
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 11px;
+      margin-top: 2px;
+      font-weight: 400;
+    }
+    @keyframes floatIcon {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @media (max-width: 992px) {
+      .hero-banner { grid-template-columns: 1fr; padding: 28px 20px; }
+      .hero-text { text-align: center; padding: 16px 0; }
+      .hero-text h1 { font-size: 38px; }
+      .hero-text p { margin: 0 auto 18px; max-width: 100%; }
+      .hero-cta { justify-content: center; }
+      .hero-visual { min-height: 160px; gap: 12px; }
+      .feature-icon-card { min-width: 90px; padding: 16px 14px; }
+      .feature-icon-card i { font-size: 30px; }
+    }
+    @media (max-width: 576px) {
+      .hero-text h1 { font-size: 28px; letter-spacing: -1px; }
+      .apple-brand-section { padding: 16px 14px; border-radius: 32px; }
+      .hero-banner { padding: 18px 14px; border-radius: 28px; }
+      .feature-icon-card { min-width: 70px; padding: 10px 10px; }
+      .feature-icon-card i { font-size: 22px; }
+      .btn-gold, .btn-glass { padding: 10px 24px; font-size: 13px; }
+    }
+
+    /* ----- 2. FEATURED SLIDER (glass, modern) ----- */
+    .slider-section {
+      margin-bottom: 48px;
+    }
+    .slider-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 22px;
+    }
+    .slider-header h3 {
+      font-size: 24px;
+      font-weight: 800;
+      color: #0b1120;
+      letter-spacing: -0.4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .slider-header h3 span { 
+      color: #008ECC;
+      background: linear-gradient(135deg, #008ECC, #00b4ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .slider-nav {
+      display: flex;
+      gap: 10px;
+    }
+    .slider-nav button {
+      width: 44px;
+      height: 44px;
+      border-radius: 60px;
+      border: 1px solid rgba(0, 0, 0, 0.02);
+      background: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(8px);
+      font-size: 20px;
+      color: #1e293b;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+    }
+    .slider-nav button:hover {
+      background: white;
+      box-shadow: 0 10px 30px rgba(0, 142, 204, 0.06);
+      border-color: #008ECC;
+      color: #008ECC;
+      transform: translateY(-2px);
+    }
+    .slider-track {
+      display: flex;
+      gap: 24px;
+      overflow-x: auto;
+      padding: 8px 4px 16px;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .slider-track::-webkit-scrollbar { display: none; }
+    .slide-card {
+      min-width: 220px;
+      background: rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 28px;
+      padding: 24px 18px 22px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.02);
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      flex-shrink: 0;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.15);
+    }
+    .slide-card:hover {
+      transform: translateY(-8px);
+      background: rgba(255, 255, 255, 0.6);
+      box-shadow: 0 30px 70px rgba(0, 142, 204, 0.04);
+      border-color: rgba(255, 255, 255, 0.7);
+    }
+    .slide-card i {
+      font-size: 42px;
+      color: #008ECC;
+      background: rgba(0, 142, 204, 0.04);
+      padding: 16px;
+      border-radius: 26px;
+      margin-bottom: 14px;
+      display: inline-block;
+      transition: all 0.4s ease;
+    }
+    .slide-card:hover i {
+      background: linear-gradient(135deg, #008ECC, #00b4ff);
+      color: white;
+      transform: scale(1.02);
+      box-shadow: 0 8px 30px rgba(0, 142, 204, 0.15);
+    }
+    .slide-card h4 { font-size: 18px; font-weight: 700; color: #0b1120; }
+    .slide-card .desc { font-size: 13px; color: #64748b; margin-top: 4px; line-height: 1.5; }
+    .slide-card .tag { display: inline-block; font-size: 10px; font-weight: 700; color: #008ECC; background: #e0f2fe; padding: 3px 16px; border-radius: 60px; margin-top: 10px; }
+    @media (max-width: 600px) { .slide-card { min-width: 180px; padding: 18px 14px; } }
+
+    /* ----- 3. ECOSYSTEM BENEFITS (glass grid) ----- */
+    .ecosystem {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-bottom: 48px;
+    }
+    .eco-card {
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 28px;
+      padding: 24px 20px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      background: rgba(255, 255, 255, 0.1);
+    }
+    .eco-card:hover {
+      background: rgba(255, 255, 255, 0.55);
+      transform: translateY(-5px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.02);
+      border-color: rgba(255, 255, 255, 0.6);
+    }
+    .eco-icon {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: #008ECC;
+      flex-shrink: 0;
+      transition: all 0.4s ease;
+    }
+    .eco-card:hover .eco-icon {
+      background: linear-gradient(135deg, #008ECC, #00b4ff);
+      color: white;
+      box-shadow: 0 6px 20px rgba(0, 142, 204, 0.12);
+    }
+    .eco-text h4 { font-size: 17px; font-weight: 700; color: #0b1120; margin-bottom: 3px; }
+    .eco-text p { font-size: 13px; color: #475569; line-height: 1.5; }
+    @media (max-width: 768px) { .ecosystem { grid-template-columns: 1fr; } }
+
+    /* ----- 4. STATISTICS (glass) ----- */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+    .stat-item {
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 28px;
+      padding: 22px 14px;
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.4s ease;
+      background: rgba(255, 255, 255, 0.08);
+    }
+    .stat-item:hover {
+      background: rgba(255, 255, 255, 0.5);
+      transform: translateY(-5px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.02);
+    }
+    .stat-item h3 { font-size: 34px; font-weight: 900; color: #0b1120; letter-spacing: -1.2px; }
+    .stat-item h3 span { color: #008ECC; }
+    .stat-item p { font-size: 13px; color: #475569; font-weight: 500; margin-top: 3px; }
+    @media (max-width: 768px) { .stats { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px) { .stats { grid-template-columns: 1fr; } }
+
+    /* ----- 5. PREMIUM CTA (refined) ----- */
+    .cta-premium {
+      background: linear-gradient(145deg, #0b1f33 0%, #0d2b4a 45%, #0077a8 100%);
+      border-radius: 44px;
+      padding: 38px 44px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      box-shadow: 0 30px 80px rgba(0, 70, 120, 0.15);
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .cta-premium h2 {
+      color: white;
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.6px;
+    }
+    .cta-premium h2 span { color: #ffd700; }
+    .cta-premium p {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 15px;
+      max-width: 380px;
+      line-height: 1.6;
+    }
+    .cta-premium .btn-gold {
+      padding: 14px 46px;
+      font-size: 15px;
+    }
+    @media (max-width: 768px) {
+      .cta-premium { flex-direction: column; text-align: center; padding: 28px 20px; }
+      .cta-premium p { max-width: 100%; }
+    }
+
+    /* responsiveness fine-tune */
+    @media (max-width: 576px) {
+      .apple-brand-section { padding: 14px 12px; border-radius: 28px; }
+      .hero-banner { padding: 16px 12px; border-radius: 28px; }
+      .hero-text h1 { font-size: 24px; }
+      .cta-premium h2 { font-size: 20px; }
+      .cta-premium { padding: 24px 16px; }
+      .btn-gold, .btn-glass { padding: 10px 20px; font-size: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="header-fluid">
+    <nav>
+      <div class="logo">
+        <img src="../img/download.svg" class="logo-img" alt="logo" />
+        <h3>MegaMart</h3>
+      </div>
+      <div class="resp_icon">
+        <img src="../img/Search.png" alt="search" />
+        <img src="../img/user.png" alt="user" />
+        <img src="../img/Buy.png" alt="cart" />
+      </div>
+      <div class="right_nav">
+        <div class="search">
+          <input type="text" placeholder="Search essentials, groceries and more..." />
+          <img src="../img/Search.png" alt="search" class="search-img" />
+          <img src="../img/list.png" alt="menu" class="list-img" />
+        </div>
+        <div class="login-page">
+          <i class="ri-user-3-line"></i>
+          <a href="signin.html">Sign Up/Sign In</a>
+          <div class="line"></div>
+          <img src="../img/Buy.png" alt="cart" />
+          <a href="cart.html">Cart <span class="cart-badge cart-count">0</span></a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+<div class="local-content" style="padding: 60px 20px; width: 100%; display: flex; justify-content: center; align-items: center; background: radial-gradient(circle at 20% 30%, #e0f2fe, transparent 40%), radial-gradient(circle at 80% 70%, #dbeafe, transparent 40%), #f8fafc;">
+  <div class="apple-brand-section">
+    <div class="brand-content">
+
+      <!-- 1. HERO BANNER — refined with your project's deep navy-to-teal gradient -->
+      <div class="hero-banner">
+        <div class="hero-text">
+          <span class="hero-tag"><i class="ri-apple-fill"></i> Official Apple</span>
+          <h1>Pro <span>Features</span></h1>
+          <p>A18 Pro · 48MP Camera · Titanium · All‑day battery.</p>
+          <div class="hero-cta">
+            <button class="btn-gold"><i class="ri-shopping-bag-3-line"></i> Explore</button>
+            <button class="btn-glass"><i class="ri-play-circle-line"></i> Watch Film</button>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="feature-icon-card">
+            <i class="ri-cpu-line"></i>
+            <h4>A18 Pro</h4>
+            <p>Fastest chip</p>
+          </div>
+          <div class="feature-icon-card">
+            <i class="ri-camera-3-line"></i>
+            <h4>48MP</h4>
+            <p>Pro camera</p>
+          </div>
+          <div class="feature-icon-card">
+            <i class="ri-battery-charge-line"></i>
+            <h4>All‑day</h4>
+            <p>Battery life</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. FEATURED SLIDER — features only -->
+      <div class="slider-section">
+        <div class="slider-header">
+          <h3>Key <span>Features</span></h3>
+          <div class="slider-nav">
+            <button id="slideLeft"><i class="ri-arrow-left-s-line"></i></button>
+            <button id="slideRight"><i class="ri-arrow-right-s-line"></i></button>
+          </div>
+        </div>
+        <div class="slider-track" id="sliderTrack">
+          <div class="slide-card"><i class="ri-smartphone-line"></i><h4>Dynamic Island</h4><div class="desc">Interactive notifications & live activities.</div><span class="tag">New</span></div>
+          <div class="slide-card"><i class="ri-camera-3-line"></i><h4>48MP Camera</h4><div class="desc">ProRAW, 4K Dolby Vision, 5x zoom.</div><span class="tag">Pro</span></div>
+          <div class="slide-card"><i class="ri-battery-charge-line"></i><h4>30h Battery</h4><div class="desc">All‑day power with fast charging.</div><span class="tag">Long</span></div>
+          <div class="slide-card"><i class="ri-shield-star-line"></i><h4>Titanium</h4><div class="desc">Stronger, lighter, premium finish.</div><span class="tag">Durable</span></div>
+          <div class="slide-card"><i class="ri-wifi-line"></i><h4>Wi‑Fi 6E</h4><div class="desc">Blazing fast connectivity.</div><span class="tag">Speed</span></div>
+        </div>
+      </div>
+
+      <!-- 3. ECOSYSTEM BENEFITS -->
+      <div class="ecosystem">
+        <div class="eco-card"><div class="eco-icon"><i class="ri-cloud-line"></i></div><div class="eco-text"><h4>iCloud Sync</h4><p>Seamless across all devices, always up to date.</p></div></div>
+        <div class="eco-card"><div class="eco-icon"><i class="ri-shield-check-line"></i></div><div class="eco-text"><h4>Privacy First</h4><p>Industry-leading security & privacy protection.</p></div></div>
+        <div class="eco-card"><div class="eco-icon"><i class="ri-refresh-line"></i></div><div class="eco-text"><h4>Ecosystem</h4><p>Works perfectly with Mac, iPad, Watch & more.</p></div></div>
+      </div>
+
+      <!-- 4. STATISTICS -->
+      <div class="stats">
+        <div class="stat-item"><h3>12<span>+</span></h3><p>iPhone Models</p></div>
+        <div class="stat-item"><h3>100<span>%</span></h3><p>Genuine Apple</p></div>
+        <div class="stat-item"><h3>24<span>h</span></h3><p>Express Delivery</p></div>
+        <div class="stat-item"><h3>4.9<span>★</span></h3><p>Avg. Rating</p></div>
+      </div>
+
+      <!-- 5. PREMIUM CTA -->
+      <div class="cta-premium">
+        <div>
+          <h2>Experience <span>Apple</span> like never before.</h2>
+          <p>Get the latest iPhone 16 Pro with exclusive offers & premium support.</p>
+        </div>
+        <button class="btn-gold"><i class="ri-shopping-bag-3-line"></i> Shop the Collection</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+  <footer>
+    <img src="../img/footer bg.png" alt="" class="footer_bg" />
+    <div class="footer_section">
+      <div class="footer_aboutapp">
+        <h2>MegaMart</h2>
+
+        <div class="footer_aboutapp1">
+          <span class="contact">Contact Us</span>
+          <div class="whatsapp">
+            <div><img src="../img/footer_whatsapp.png" alt="" /></div>
+            <div>
+              <span>Whats App</span>
+              <p>+1 202-918-2132</p>
+            </div>
+          </div>
+          <div class="call">
+            <div><img src="../img/footer call.png" alt="" /></div>
+            <div>
+              <span>Call Us</span>
+              <p>+1 202-918-2132</p>
+            </div>
+          </div>
+          <span class="download">Download App</span>
+          <div class="footer_img">
+            <img src="../img/footer app store.png" alt="" class="app" />
+            <img src="../img/footer google play.png" alt="" class="play" />
+          </div>
+        </div>
+      </div>
+
+      <div class="footer_list">
+        <div class="list1">
+          <div class="list_heading">
+            <h3>Most Popular Categories</h3>
+          </div>
+          <ul>
+            <li class="l1">Staples</li>
+            <li class="l2">Beverages</li>
+            <li class="l3">Personal Care</li>
+            <li class="l4">Home Care</li>
+            <li class="l5">Baby Care</li>
+            <li class="l6">Vegetables & Fruits</li>
+            <li class="l7">Snacks & Foods</li>
+            <li class="l8">Dairy & Bakery</li>
+          </ul>
+        </div>
+
+        <div class="list2">
+          <div class="list_heading2">
+            <h3>Customer Services</h3>
+          </div>
+          <ul>
+            <li class="l9"><a href="about.html">About Us</a></li>
+            <li class="l10">Terms & Conditions</li>
+            <li class="l11"> <a href="contact.html">FAQ</a></li>
+            <li class="l12">Privacy Policy</li>
+            <li class="l13">E-waste Policy</li>
+            <li class="l14">Cancellation & Return Policy</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">
+      <p>© 2022 All rights reserved. Reliance Retail Ltd.</p>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+  <script>
+    // Slider functionality
+    const track = document.getElementById('sliderTrack');
+    const leftBtn = document.getElementById('slideLeft');
+    const rightBtn = document.getElementById('slideRight');
+
+    leftBtn.addEventListener('click', () => {
+      track.scrollBy({ left: -240, behavior: 'smooth' });
+    });
+    rightBtn.addEventListener('click', () => {
+      track.scrollBy({ left: 240, behavior: 'smooth' });
+    });
+
+    // auto-scroll subtle
+    let scrollInterval = setInterval(() => {
+      if (track.scrollLeft + track.clientWidth >= track.scrollWidth) {
+        track.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        track.scrollBy({ left: 1, behavior: 'smooth' });
+      }
+    }, 4500);
+
+    track.addEventListener('mouseenter', () => clearInterval(scrollInterval));
+    track.addEventListener('mouseleave', () => {
+      scrollInterval = setInterval(() => {
+        if (track.scrollLeft + track.clientWidth >= track.scrollWidth) {
+          track.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          track.scrollBy({ left: 1, behavior: 'smooth' });
+        }
+      }, 4500);
+    });
+
+    console.log('🍎 Apple Premium Features — Modern UI');
+  </script>
+</body>
+</html>

@@ -1,0 +1,1236 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MegaMart - Create Account</title>
+    <!-- Google Fonts for ultra-crisp modern typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Link index page stylesheets for exact navbar & footer match -->
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="../responsive_style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    
+    <style>
+      :root {
+        --primary: #008ECC;
+        --primary-dark: #006da0;
+        --primary-light: #e8f5fb;
+        --primary-glow: rgba(0, 142, 204, 0.18);
+        --text-heading: #0f172a;
+        --text-body: #475569;
+        --text-muted: #94a3b8;
+        --border-color: #e2e8f0;
+        --border-hover: #cbd5e1;
+        --card-bg: #ffffff;
+        --page-bg: #F0F6FA;
+        --success: #10b981;
+        --warning: #f59e0b;
+        --danger: #ef4444;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: var(--page-bg);
+        font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        color: var(--text-body);
+        margin: 0;
+      }
+
+      .header-fluid {
+        background: #ffffff;
+        z-index: 9999;
+      }
+
+      /* Enhanced Auth Wrapper */
+      .auth-wrapper {
+        flex-grow: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 44px 16px;
+        position: relative;
+        background: radial-gradient(circle at 8% 18%, rgba(0, 142, 204, 0.08) 0%, transparent 35%),
+                    radial-gradient(circle at 92% 82%, rgba(0, 142, 204, 0.06) 0%, transparent 35%);
+      }
+
+      .auth-container {
+        max-width: 1040px;
+        width: 100%;
+        min-height: 660px;
+        display: flex;
+        background: var(--card-bg);
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: 0 20px 45px -10px rgba(0, 102, 160, 0.12),
+                    0 1px 3px rgba(0, 0, 0, 0.04);
+        border: 1px solid rgba(226, 232, 240, 0.9);
+      }
+
+      /* Left Promotional Showcase Panel */
+      .auth-left {
+        flex: 0.95;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 48px 36px;
+        background: #006da0;
+      }
+
+      .auth-left-bg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        opacity: 0.35;
+        transform: scale(1.05);
+        transition: transform 6s ease;
+      }
+
+      .auth-left:hover .auth-left-bg {
+        transform: scale(1.12);
+      }
+
+      .auth-left-gradient {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(165deg, rgba(0, 110, 160, 0.85) 0%, rgba(0, 65, 100, 0.95) 100%);
+      }
+
+      .auth-left-content {
+        position: relative;
+        z-index: 2;
+        color: #ffffff;
+      }
+
+      .brand-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(255, 255, 255, 0.18);
+        backdrop-filter: blur(8px);
+        padding: 6px 14px;
+        border-radius: 30px;
+        font-size: 1.25rem;
+        font-weight: 600;
+        letter-spacing: 0.3px;
+        width: fit-content;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        margin-bottom: 22px;
+      }
+
+      .auth-left h1 {
+        font-size: 3.2rem;
+        font-weight: 800;
+        line-height: 1.2;
+        letter-spacing: -0.8px;
+        margin: 0 0 12px;
+        color: #ffffff;
+      }
+
+      .auth-left .tagline {
+        font-size: 1.45rem;
+        opacity: 0.92;
+        line-height: 1.6;
+        margin-bottom: 28px;
+        font-weight: 400;
+      }
+
+      /* Perk Cards */
+      .perk-cards {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .perk-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        background: rgba(255, 255, 255, 0.14);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        padding: 12px 14px;
+        border-radius: 12px;
+        font-size: 1.3rem;
+        font-weight: 500;
+        transition: transform 0.2s ease, background 0.2s ease;
+      }
+
+      .perk-item:hover {
+        transform: translateX(4px);
+        background: rgba(255, 255, 255, 0.2);
+      }
+
+      .perk-icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 9px;
+        background: rgba(255, 255, 255, 0.25);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        flex-shrink: 0;
+      }
+
+      .auth-left-footer {
+        position: relative;
+        z-index: 2;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.16);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 1.2rem;
+        color: #ffffff;
+        opacity: 0.9;
+      }
+
+      .auth-left-footer span {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      /* Right Form Panel */
+      .auth-right {
+        flex: 1.25;
+        padding: 42px 46px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background: #ffffff;
+      }
+
+      .form-top-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+      }
+
+      .form-title-group h2 {
+        font-size: 2.6rem;
+        font-weight: 800;
+        color: var(--text-heading);
+        letter-spacing: -0.6px;
+        margin: 0 0 4px;
+      }
+
+      .form-title-group p {
+        font-size: 1.4rem;
+        color: var(--text-muted);
+        margin: 0;
+      }
+
+      .signin-link-top {
+        font-size: 1.3rem;
+        color: var(--text-body);
+        white-space: nowrap;
+      }
+
+      .signin-link-top a {
+        color: var(--primary);
+        font-weight: 700;
+        text-decoration: none;
+        margin-left: 4px;
+      }
+
+      .signin-link-top a:hover {
+        color: var(--primary-dark);
+        text-decoration: underline;
+      }
+
+      /* Social Logins */
+      .social-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin-bottom: 18px;
+      }
+
+      .btn-social {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        height: 44px;
+        border-radius: 11px;
+        border: 1.5px solid var(--border-color);
+        background: #ffffff;
+        color: var(--text-heading);
+        font-size: 1.3rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        padding: 0 14px;
+      }
+
+      .btn-social:hover {
+        background: #f8fafc;
+        border-color: #cbd5e1;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      }
+
+      /* Divider */
+      .auth-divider {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+        color: var(--text-muted);
+        font-size: 1.2rem;
+        font-weight: 500;
+      }
+
+      .auth-divider::before,
+      .auth-divider::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: var(--border-color);
+      }
+
+      .auth-divider span {
+        padding: 0 12px;
+      }
+
+      /* Form Fields Grid */
+      .fields-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px 14px;
+      }
+
+      .field-col-full {
+        grid-column: 1 / -1;
+      }
+
+      .input-group {
+        position: relative;
+      }
+
+      .input-group label {
+        display: block;
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: var(--text-heading);
+        margin-bottom: 6px;
+      }
+
+      .input-wrapper,
+      .phone-wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: 100%;
+      }
+
+      .input-wrapper .input-icon {
+        position: absolute;
+        left: 13px;
+        font-size: 1.7rem;
+        color: #94a3b8;
+        pointer-events: none;
+        transition: color 0.2s ease;
+      }
+
+      .input-wrapper input,
+      .phone-wrapper input {
+        width: 100%;
+        height: 48px;
+        padding: 0 38px;
+        border-radius: 11px;
+        border: 1.5px solid var(--border-color);
+        font-size: 1.35rem;
+        font-family: inherit;
+        color: var(--text-heading);
+        background: #fbfcfe;
+        outline: none;
+        box-sizing: border-box;
+        transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .input-wrapper input::placeholder,
+      .phone-wrapper input::placeholder {
+        color: #a0aec0;
+        font-size: 1.3rem;
+      }
+
+      .input-wrapper input:hover,
+      .phone-wrapper input:hover {
+        border-color: var(--border-hover);
+        background: #ffffff;
+      }
+
+      .input-wrapper input:focus,
+      .phone-wrapper input:focus {
+        border-color: var(--primary);
+        background: #ffffff;
+        box-shadow: 0 0 0 3.5px var(--primary-glow);
+      }
+
+      .input-wrapper input:focus ~ .input-icon {
+        color: var(--primary);
+      }
+
+      /* Mobile Phone Badge */
+      .country-code-pill {
+        position: absolute;
+        left: 8px;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 5px 10px;
+        background: #f1f5f9;
+        border-radius: 8px;
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #334155;
+        border: 1px solid #e2e8f0;
+        pointer-events: none;
+        z-index: 2;
+      }
+
+      .phone-wrapper input {
+        padding-left: 92px !important;
+      }
+
+      /* Password toggle eye button */
+      .toggle-pass-btn {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        border: none;
+        background: transparent;
+        color: #94a3b8;
+        cursor: pointer;
+        padding: 5px;
+        border-radius: 7px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.7rem;
+        transition: color 0.2s, background 0.2s;
+      }
+
+      .toggle-pass-btn:hover {
+        color: var(--primary);
+        background: #f1f5f9;
+      }
+
+      /* Password Strength Meter */
+      .strength-meter-container {
+        margin-top: 6px;
+        display: none;
+      }
+
+      .strength-bars {
+        display: flex;
+        gap: 5px;
+        margin-bottom: 4px;
+      }
+
+      .strength-bar {
+        height: 4px;
+        flex: 1;
+        border-radius: 4px;
+        background: #e2e8f0;
+        transition: background 0.3s ease;
+      }
+
+      .strength-text {
+        font-size: 1.15rem;
+        font-weight: 600;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .strength-weak { background: var(--danger); }
+      .strength-medium { background: var(--warning); }
+      .strength-strong { background: var(--success); }
+
+      /* Validation States */
+      .input-group.error .input-wrapper input,
+      .input-group.error .phone-wrapper input {
+        border-color: var(--danger);
+        background: #fffafa;
+      }
+
+      .input-group.error input:focus {
+        box-shadow: 0 0 0 3.5px rgba(239, 68, 68, 0.15);
+      }
+
+      .input-group.success .input-wrapper input,
+      .input-group.success .phone-wrapper input {
+        border-color: var(--success);
+      }
+
+      .input-group.success .input-icon {
+        color: var(--success);
+      }
+
+      .error-msg {
+        display: none;
+        align-items: center;
+        gap: 4px;
+        font-size: 1.15rem;
+        font-weight: 500;
+        color: var(--danger);
+        margin-top: 5px;
+      }
+
+      .input-group.error .error-msg {
+        display: flex;
+        animation: fadeInDown 0.2s ease;
+      }
+
+      @keyframes fadeInDown {
+        from {
+          opacity: 0;
+          transform: translateY(-4px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Terms Checkbox */
+      .terms-row {
+        margin: 16px 0 18px;
+        display: flex;
+        align-items: flex-start;
+        gap: 9px;
+        font-size: 1.25rem;
+        color: var(--text-body);
+        line-height: 1.5;
+      }
+
+      .terms-row input[type="checkbox"] {
+        accent-color: var(--primary);
+        width: 17px;
+        height: 17px;
+        cursor: pointer;
+        margin-top: 2px;
+        flex-shrink: 0;
+      }
+
+      .terms-row a {
+        color: var(--primary);
+        font-weight: 600;
+        text-decoration: none;
+      }
+
+      .terms-row a:hover {
+        text-decoration: underline;
+      }
+
+      /* Submit Button */
+      .btn-submit {
+        width: 100%;
+        height: 48px;
+        border: none;
+        border-radius: 12px;
+        background: linear-gradient(135deg, #008ECC 0%, #0073a8 100%);
+        color: #ffffff;
+        font-size: 1.5rem;
+        font-weight: 700;
+        font-family: inherit;
+        letter-spacing: 0.2px;
+        cursor: pointer;
+        transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        box-shadow: 0 8px 18px rgba(0, 142, 204, 0.25);
+      }
+
+      .btn-submit:hover {
+        background: linear-gradient(135deg, #007fb8 0%, #006696 100%);
+        box-shadow: 0 12px 22px rgba(0, 142, 204, 0.32);
+        transform: translateY(-1.5px);
+      }
+
+      .btn-submit:active {
+        transform: translateY(0);
+        box-shadow: 0 4px 12px rgba(0, 142, 204, 0.2);
+      }
+
+      .btn-submit:disabled {
+        background: #94a3b8;
+        box-shadow: none;
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      /* Spinner */
+      .spinner {
+        display: none;
+        width: 18px;
+        height: 18px;
+        border: 2.5px solid rgba(255, 255, 255, 0.3);
+        border-top-color: #ffffff;
+        border-radius: 50%;
+        animation: spin 0.7s linear infinite;
+      }
+
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+
+      /* Footer redirect */
+      .footer-redirect {
+        margin-top: 18px;
+        text-align: center;
+        font-size: 1.35rem;
+        color: var(--text-body);
+      }
+
+      .footer-redirect a {
+        color: var(--primary);
+        font-weight: 700;
+        text-decoration: none;
+        margin-left: 4px;
+        transition: color 0.2s;
+      }
+
+      .footer-redirect a:hover {
+        color: var(--primary-dark);
+        text-decoration: underline;
+      }
+
+      /* Modern Toast Notification */
+      .toast-msg {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        background: #0f172a;
+        color: #ffffff;
+        padding: 14px 22px;
+        border-radius: 12px;
+        font-size: 1.35rem;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        box-shadow: 0 16px 36px rgba(0, 0, 0, 0.2);
+        opacity: 0;
+        transform: translateY(20px);
+        pointer-events: none;
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        z-index: 99999;
+      }
+
+      .toast-msg.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Responsive Breakpoints */
+      @media (max-width: 900px) {
+        .auth-container {
+          flex-direction: column;
+          max-width: 520px;
+          border-radius: 20px;
+        }
+
+        .auth-left {
+          display: none;
+        }
+
+        .auth-right {
+          padding: 36px 26px;
+        }
+
+        .form-title-group h2 {
+          font-size: 2.3rem;
+        }
+
+        .fields-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .field-col-full {
+          grid-column: auto;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .auth-wrapper {
+          padding: 20px 12px;
+        }
+
+        .auth-right {
+          padding: 28px 18px;
+        }
+
+        .social-actions {
+          grid-template-columns: 1fr;
+        }
+
+        .form-top-bar {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 6px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- EXACT HOME PAGE NAVBAR WITH UPDATED RELATIVE PATHS -->
+    <header class="header-fluid">
+      <nav>
+        <div class="logo">
+          <img src="../img/download.svg" class="logo-img" alt="logo" />
+          <h3>MegaMart</h3>
+        </div>
+        <div class="resp_icon">
+          <img src="../img/Search.png" alt="search" />
+          <img src="../img/user.png" alt="user" />
+          <img src="../img/Buy.png" alt="cart" />
+        </div>
+        <div class="right_nav">
+          <div class="search">
+            <input type="text" placeholder="Search essentials, groceries and more..." />
+            <img src="../img/Search.png" alt="search" class="search-img" />
+            <img src="../img/list.png" alt="menu" class="list-img" />
+          </div>
+          <div class="login-page">
+            <i class="ri-user-3-line"></i>
+            <a href="signin.html">Sign Up/Sign In</a>
+            <div class="line"></div>
+            <img src="../img/Buy.png" alt="cart" />
+            <a href="cart.html">Cart <span class="cart-badge cart-count">0</span></a>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- AUTH WRAPPER -->
+    <main class="auth-wrapper">
+      <div class="auth-container">
+        
+        <!-- Left Showcase Panel -->
+        <aside class="auth-left">
+          <img
+            src="../img/megamart_signup_side_image.jpg"
+            alt="MegaMart shopping promotions"
+            class="auth-left-bg"
+            onerror="this.style.display='none'"
+          />
+          <div class="auth-left-gradient"></div>
+
+          <div class="auth-left-content">
+            <div class="brand-badge">
+              <i class="ri-vip-crown-fill"></i> MegaMart Club
+            </div>
+            <h1>Join MegaMart! 🎉</h1>
+            <p class="tagline">
+              Create your account today and unlock exclusive savings, lightning-fast orders, and member rewards.
+            </p>
+
+            <div class="perk-cards">
+              <div class="perk-item">
+                <div class="perk-icon">
+                  <i class="ri-gift-line"></i>
+                </div>
+                <span>₹250 Welcome Voucher for your first order</span>
+              </div>
+              <div class="perk-item">
+                <div class="perk-icon">
+                  <i class="ri-truck-line"></i>
+                </div>
+                <span>Zero Delivery Charges for your first 30 days</span>
+              </div>
+              <div class="perk-item">
+                <div class="perk-icon">
+                  <i class="ri-discount-percent-line"></i>
+                </div>
+                <span>Early Access to festive flash sales</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="auth-left-footer">
+            <span><i class="ri-star-fill" style="color: #fbbf24;"></i> 4.9/5 Rating</span>
+            <span><i class="ri-shield-check-fill" style="color: #38bdf8;"></i> Trusted by 2M+ Users</span>
+          </div>
+        </aside>
+
+        <!-- Right Sign Up Form Panel -->
+        <section class="auth-right">
+          <div class="form-top-bar">
+            <div class="form-title-group">
+              <h2>Create Account</h2>
+              <p>Sign up in under 60 seconds</p>
+            </div>
+            <div class="signin-link-top">
+              Have an account? <a href="signin.html">Sign in</a>
+            </div>
+          </div>
+
+          <!-- Fast Social Logins -->
+          <div class="social-actions">
+            <button type="button" class="btn-social" id="googleBtn" aria-label="Sign up with Google">
+              <svg width="18" height="18" viewBox="0 0 24 24">
+                <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+                <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+              </svg>
+              <span>Google</span>
+            </button>
+            <button type="button" class="btn-social" id="appleBtn" aria-label="Sign up with Apple">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.61-.75 1.04-1.8 0.92-2.87-.9.04-2 .6-2.63 1.34-.56.64-.99 1.69-.85 2.71 1 .08 1.95-.44 2.56-1.18z"/>
+              </svg>
+              <span>Apple</span>
+            </button>
+          </div>
+
+          <div class="auth-divider">
+            <span>or register with details</span>
+          </div>
+
+          <!-- SignUp Form -->
+          <form id="signUpForm" novalidate>
+            <div class="fields-grid">
+              <!-- Full Name -->
+              <div class="input-group" id="nameField">
+                <label for="nameInput">Full Name</label>
+                <div class="input-wrapper">
+                  <i class="ri-user-3-line input-icon"></i>
+                  <input
+                    type="text"
+                    id="nameInput"
+                    autocomplete="name"
+                    placeholder="e.g. Rahul Sharma"
+                    required
+                  />
+                </div>
+                <div class="error-msg">
+                  <i class="ri-error-warning-line"></i> Please enter at least 3 characters.
+                </div>
+              </div>
+
+              <!-- Email Address -->
+              <div class="input-group" id="emailField">
+                <label for="emailInput">Email Address</label>
+                <div class="input-wrapper">
+                  <i class="ri-mail-line input-icon"></i>
+                  <input
+                    type="email"
+                    id="emailInput"
+                    autocomplete="email"
+                    placeholder="name@example.com"
+                    required
+                  />
+                </div>
+                <div class="error-msg">
+                  <i class="ri-error-warning-line"></i> Please enter a valid email address.
+                </div>
+              </div>
+
+              <!-- Mobile Number (Full Width) -->
+              <div class="input-group field-col-full" id="phoneField">
+                <label for="phoneInput">Mobile Number</label>
+                <div class="phone-wrapper">
+                  <div class="country-code-pill">
+                    <i class="ri-phone-fill" style="color: #008ECC; font-size: 1.3rem;"></i> +91
+                  </div>
+                  <input
+                    type="tel"
+                    id="phoneInput"
+                    autocomplete="tel"
+                    inputmode="numeric"
+                    maxlength="10"
+                    placeholder="10-digit mobile number"
+                    required
+                  />
+                </div>
+                <div class="error-msg">
+                  <i class="ri-error-warning-line"></i> Enter a valid 10-digit Indian mobile number (starts with 6-9).
+                </div>
+              </div>
+
+              <!-- Password -->
+              <div class="input-group" id="passwordField">
+                <label for="passwordInput">Password</label>
+                <div class="input-wrapper">
+                  <i class="ri-lock-2-line input-icon"></i>
+                  <input
+                    type="password"
+                    id="passwordInput"
+                    autocomplete="new-password"
+                    placeholder="Min 6 characters"
+                    required
+                  />
+                  <button
+                    type="button"
+                    class="toggle-pass-btn"
+                    data-target="passwordInput"
+                    aria-label="Toggle password visibility"
+                  >
+                    <i class="ri-eye-line"></i>
+                  </button>
+                </div>
+                
+                <!-- Password Strength Meter -->
+                <div class="strength-meter-container" id="strengthMeter">
+                  <div class="strength-bars">
+                    <div class="strength-bar" id="bar1"></div>
+                    <div class="strength-bar" id="bar2"></div>
+                    <div class="strength-bar" id="bar3"></div>
+                  </div>
+                  <div class="strength-text">
+                    <span style="color: #64748b; font-weight: 500;">Strength:</span>
+                    <span id="strengthLabel" style="color: #ef4444;">Weak</span>
+                  </div>
+                </div>
+
+                <div class="error-msg">
+                  <i class="ri-error-warning-line"></i> Password must be at least 6 characters.
+                </div>
+              </div>
+
+              <!-- Confirm Password -->
+              <div class="input-group" id="confirmPasswordField">
+                <label for="confirmPasswordInput">Confirm Password</label>
+                <div class="input-wrapper">
+                  <i class="ri-lock-password-line input-icon"></i>
+                  <input
+                    type="password"
+                    id="confirmPasswordInput"
+                    autocomplete="new-password"
+                    placeholder="Re-enter password"
+                    required
+                  />
+                  <button
+                    type="button"
+                    class="toggle-pass-btn"
+                    data-target="confirmPasswordInput"
+                    aria-label="Toggle password visibility"
+                  >
+                    <i class="ri-eye-line"></i>
+                  </button>
+                </div>
+                <div class="error-msg">
+                  <i class="ri-error-warning-line"></i> Passwords do not match.
+                </div>
+              </div>
+            </div>
+
+            <!-- Terms & Conditions Checkbox -->
+            <label class="terms-row" id="termsField">
+              <input type="checkbox" id="termsCheck" checked />
+              <span>
+                I agree to MegaMart's <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.
+              </span>
+            </label>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn-submit" id="submitBtn">
+              <span class="spinner" id="btnSpinner"></span>
+              <span id="btnText">Create Account</span>
+              <i class="ri-user-add-line" id="btnIcon"></i>
+            </button>
+          </form>
+
+          <div class="footer-redirect">
+            Already have an account? <a href="signin.html">Sign in instead</a>
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+      <img src="../img/footer bg.png" alt="" class="footer_bg" />
+      <div class="footer_section">
+        <div class="footer_aboutapp">
+          <h2>MegaMart</h2>
+
+          <div class="footer_aboutapp1">
+            <span class="contact">Contact Us</span>
+            <div class="whatsapp">
+              <div><img src="../img/footer_whatsapp.png" alt="" /></div>
+              <div>
+                <span>Whats App</span>
+                <p>+1 202-918-2132</p>
+              </div>
+            </div>
+            <div class="call">
+              <div><img src="../img/footer call.png" alt="" /></div>
+              <div>
+                <span>Call Us</span>
+                <p>+1 202-918-2132</p>
+              </div>
+            </div>
+            <span class="download">Download App</span>
+            <div class="footer_img">
+              <img src="../img/footer app store.png" alt="" class="app" />
+              <img src="../img/footer google play.png" alt="" class="play" />
+            </div>
+          </div>
+        </div>
+
+        <div class="footer_list">
+          <div class="list1">
+            <div class="list_heading">
+              <h3>Most Popular Categories</h3>
+            </div>
+            <ul>
+              <li class="l1">Staples</li>
+              <li class="l2">Beverages</li>
+              <li class="l3">Personal Care</li>
+              <li class="l4">Home Care</li>
+              <li class="l5">Baby Care</li>
+              <li class="l6">Vegetables & Fruits</li>
+              <li class="l7">Snacks & Foods</li>
+              <li class="l8">Dairy & Bakery</li>
+            </ul>
+          </div>
+
+          <div class="list2">
+            <div class="list_heading2">
+              <h3>Customer Services</h3>
+            </div>
+            <ul>
+              <li class="l9"><a href="about.html">About Us</a></li>
+              <li class="l10">Terms & Conditions</li>
+              <li class="l11"> <a href="contact.html">FAQ</a></li>
+              <li class="l12">Privacy Policy</li>
+              <li class="l13">E-waste Policy</li>
+              <li class="l14">Cancellation & Return Policy</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>© 2022 All rights reserved. Reliance Retail Ltd.</p>
+      </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div class="toast-msg" id="toastMsg" role="alert" aria-live="polite">
+      <i class="ri-checkbox-circle-line" id="toastIcon"></i>
+      <span id="toastText">Account created successfully!</span>
+    </div>
+
+    <script src="../script.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const form = document.getElementById("signUpForm");
+        const submitBtn = document.getElementById("submitBtn");
+        const btnSpinner = document.getElementById("btnSpinner");
+        const btnText = document.getElementById("btnText");
+        const btnIcon = document.getElementById("btnIcon");
+        const googleBtn = document.getElementById("googleBtn");
+        const appleBtn = document.getElementById("appleBtn");
+        const termsCheck = document.getElementById("termsCheck");
+        const toast = document.getElementById("toastMsg");
+        const toastText = document.getElementById("toastText");
+        const toastIcon = document.getElementById("toastIcon");
+
+        const strengthMeter = document.getElementById("strengthMeter");
+        const bar1 = document.getElementById("bar1");
+        const bar2 = document.getElementById("bar2");
+        const bar3 = document.getElementById("bar3");
+        const strengthLabel = document.getElementById("strengthLabel");
+
+        let toastTimer;
+        function showNotification(msg, type = "success") {
+          toastText.textContent = msg;
+          if (type === "error") {
+            toastIcon.className = "ri-error-warning-fill";
+            toastIcon.style.color = "#ef4444";
+          } else if (type === "info") {
+            toastIcon.className = "ri-information-fill";
+            toastIcon.style.color = "#38bdf8";
+          } else {
+            toastIcon.className = "ri-checkbox-circle-fill";
+            toastIcon.style.color = "#10b981";
+          }
+          toast.classList.add("show");
+          clearTimeout(toastTimer);
+          toastTimer = setTimeout(() => toast.classList.remove("show"), 3200);
+        }
+
+        const inputs = {
+          name: {
+            el: document.getElementById("nameInput"),
+            field: "nameField",
+            test: (v) => v.trim().length >= 3,
+          },
+          email: {
+            el: document.getElementById("emailInput"),
+            field: "emailField",
+            test: (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()),
+          },
+          phone: {
+            el: document.getElementById("phoneInput"),
+            field: "phoneField",
+            test: (v) => /^[6-9]\d{9}$/.test(v.trim()),
+          },
+          password: {
+            el: document.getElementById("passwordInput"),
+            field: "passwordField",
+            test: (v) => v.length >= 6,
+          },
+          confirm: {
+            el: document.getElementById("confirmPasswordInput"),
+            field: "confirmPasswordField",
+            test: (v) => v !== "" && v === inputs.password.el.value,
+          },
+        };
+
+        function validate(key) {
+          const item = inputs[key];
+          const ok = item.test(item.el.value);
+          const field = document.getElementById(item.field);
+          field.classList.toggle("error", !ok);
+          field.classList.toggle("success", ok);
+          return ok;
+        }
+
+        // Live input listeners
+        Object.keys(inputs).forEach((key) => {
+          inputs[key].el.addEventListener("input", () => {
+            if (inputs[key].el.value || key === "confirm") validate(key);
+            if (key === "password" && inputs.confirm.el.value) {
+              validate("confirm");
+            }
+          });
+        });
+
+        // Dynamic password strength meter calculation
+        inputs.password.el.addEventListener("input", (e) => {
+          const val = e.target.value;
+          if (val.length === 0) {
+            strengthMeter.style.display = "none";
+            return;
+          }
+          strengthMeter.style.display = "block";
+
+          let score = 0;
+          if (val.length >= 6) score++;
+          if (val.length >= 8 && /[0-9]/.test(val)) score++;
+          if (val.length >= 10 && /[A-Z]/.test(val) && /[^A-Za-z0-9]/.test(val)) score++;
+
+          // Reset bars
+          bar1.className = "strength-bar";
+          bar2.className = "strength-bar";
+          bar3.className = "strength-bar";
+
+          if (score <= 1) {
+            bar1.classList.add("strength-weak");
+            strengthLabel.textContent = "Weak (Use numbers & symbols)";
+            strengthLabel.style.color = "#ef4444";
+          } else if (score === 2) {
+            bar1.classList.add("strength-medium");
+            bar2.classList.add("strength-medium");
+            strengthLabel.textContent = "Moderate";
+            strengthLabel.style.color = "#f59e0b";
+          } else {
+            bar1.classList.add("strength-strong");
+            bar2.classList.add("strength-strong");
+            bar3.classList.add("strength-strong");
+            strengthLabel.textContent = "Strong & Secure";
+            strengthLabel.style.color = "#10b981";
+          }
+        });
+
+        // Toggle Password Visibility
+        document.querySelectorAll(".toggle-pass-btn").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const input = document.getElementById(btn.dataset.target);
+            const isPassword = input.type === "password";
+            input.type = isPassword ? "text" : "password";
+            const icon = btn.querySelector("i");
+            if (icon) {
+              icon.className = isPassword ? "ri-eye-off-line" : "ri-eye-line";
+            }
+          });
+        });
+
+        // Social auth demo buttons
+        googleBtn.addEventListener("click", () => {
+          showNotification("Connecting to Google Authentication...", "info");
+        });
+        appleBtn.addEventListener("click", () => {
+          showNotification("Connecting to Apple ID Authentication...", "info");
+        });
+
+        // Form Submit
+        form.addEventListener("submit", (e) => {
+          e.preventDefault();
+
+          const allValid = Object.keys(inputs).map(validate).every(Boolean);
+
+          if (!termsCheck.checked) {
+            showNotification("Please accept the Terms of Service to proceed.", "error");
+            return;
+          }
+
+          if (!allValid) {
+            showNotification("Please fix the highlighted fields to continue.", "error");
+            const firstError = form.querySelector(".input-group.error input");
+            if (firstError) firstError.focus();
+            return;
+          }
+
+          // Store user session in localStorage
+          localStorage.setItem(
+            "megaMartUser",
+            JSON.stringify({
+              name: inputs.name.el.value.trim(),
+              email: inputs.email.el.value.trim(),
+              phone: inputs.phone.el.value.trim(),
+            })
+          );
+
+          // Button feedback state
+          submitBtn.disabled = true;
+          btnSpinner.style.display = "block";
+          btnIcon.style.display = "none";
+          btnText.textContent = "Creating Account...";
+
+          showNotification("Setting up your MegaMart account...", "info");
+
+          setTimeout(() => {
+            showNotification("🎉 Account created successfully! Redirecting...", "success");
+            setTimeout(() => {
+              window.location.href = "../index.html";
+            }, 1000);
+          }, 1100);
+        });
+      });
+    </script>
+  </body>
+</html>

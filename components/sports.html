@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MegaMart - Sports</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="../responsive_style.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body{background:#f8fafc;padding:0;}
+.header{text-align:center;margin-bottom:70px;}
+.header h1{font-size:38px;font-weight:700;color:#0f172a;margin-bottom:10px;}
+.header p{color:#64748b;font-size:15px;}
+.mobile-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:45px;}
+.mobile-card{text-decoration:none;}
+.card{background:white;border-radius:26px;padding:35px 25px;box-shadow:0 15px 35px rgba(0,0,0,0.06),0 5px 15px rgba(0,0,0,0.04);transition:all .45s cubic-bezier(.165,.84,.44,1);position:relative;overflow:hidden;}
+.card:hover{transform:translateY(-15px);box-shadow:0 30px 60px rgba(0,0,0,0.12);}
+.card-img{height:260px;display:flex;align-items:center;justify-content:center;position:relative;margin-bottom:1px;}
+.card-img::before{content:"";position:absolute;width:220px;height:220px;background:linear-gradient(135deg,#dbeafe,#ede9fe);border-radius:50%;filter:blur(20px);opacity:.6;}
+.card-img img{max-height:230px;object-fit:contain;transition:.6s ease;filter:drop-shadow(0 30px 40px rgba(0,0,0,0.15));position:relative;}
+.card:hover .card-img img{transform:scale(1.08) rotate(-1deg);}
+.badge{position:absolute;top:15px;left:15px;background:#ef4444;color:white;padding:8px 14px;border-radius:50px;font-size:12px;font-weight:600;box-shadow:0 5px 15px rgba(239,68,68,.4);}
+.card-info h3{font-size:18px;color:#111827;margin-bottom:12px;font-weight:600;}
+.price{font-size:20px;font-weight:700;color:#2563eb;}
+.old-price{font-size:14px;text-decoration:line-through;color:#9ca3af;margin-left:10px;}
+.save{margin-top:8px;font-size:14px;font-weight:500;color:#16a34a;}
+@media(max-width:768px){.local-content{padding:40px 6% !important;}.header h1{font-size:28px;}}
+</style>
+</head>
+<body>
+  <header class="header-fluid">
+    <nav>
+      <div class="logo">
+        <img src="../img/download.svg" class="logo-img" alt="logo" />
+        <h3>MegaMart</h3>
+      </div>
+      <div class="resp_icon">
+        <img src="../img/Search.png" alt="search" />
+        <img src="../img/user.png" alt="user" />
+        <img src="../img/Buy.png" alt="cart" />
+      </div>
+      <div class="right_nav">
+        <div class="search">
+          <input type="text" placeholder="Search essentials, groceries and more..." />
+          <img src="../img/Search.png" alt="search" class="search-img" />
+          <img src="../img/list.png" alt="menu" class="list-img" />
+        </div>
+        <div class="login-page">
+          <i class="ri-user-3-line"></i>
+          <a href="signin.html">Sign Up/Sign In</a>
+          <div class="line"></div>
+          <img src="../img/Buy.png" alt="cart" />
+          <a href="cart.html">Cart <span class="cart-badge cart-count">0</span></a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+<div class="local-content" style="background: linear-gradient(135deg, #eef2ff, #f8fafc); padding: 70px 8%; min-height: 70vh;">
+<div class="header">
+    <h1>Explore Sports &amp; Fitness</h1>
+    <p>Equipment and gear for outdoor games and workouts</p>
+</div>
+
+<div class="mobile-grid">
+
+    <a href="#" class="mobile-card">
+        <div class="card">
+            <div class="card-img">
+                <div class="badge">35% OFF</div>
+                <img src="../img/yogamat.png" alt="Yoga Mat Premium">
+            </div>
+            <div class="card-info">
+                <h3>Yoga Mat Premium 6mm</h3>
+                <span class="price">₹899</span>
+                <span class="old-price">₹1,379</span>
+                <div class="save">Save ₹480</div>
+            </div>
+        </div>
+    </a>
+
+    <a href="#" class="mobile-card">
+        <div class="card">
+            <div class="card-img">
+                <div class="badge">28% OFF</div>
+                <img src="../img/cricketbat.png" alt="Cricket Bat">
+            </div>
+            <div class="card-info">
+                <h3>Cricket Bat Kashmir Willow</h3>
+                <span class="price">₹1,499</span>
+                <span class="old-price">₹2,082</span>
+                <div class="save">Save ₹583</div>
+            </div>
+        </div>
+    </a>
+
+    <a href="#" class="mobile-card">
+        <div class="card">
+            <div class="card-img">
+                <div class="badge">40% OFF</div>
+                <img src="../img/football.png" alt="Football Size 5">
+            </div>
+            <div class="card-info">
+                <h3>Football Size 5</h3>
+                <span class="price">₹699</span>
+                <span class="old-price">₹1,165</span>
+                <div class="save">Save ₹466</div>
+            </div>
+        </div>
+    </a>
+
+    <a href="#" class="mobile-card">
+        <div class="card">
+            <div class="card-img">
+                <div class="badge">32% OFF</div>
+                <img src="../img/adjustableDumbbles.png" alt="Adjustable Dumbbells">
+            </div>
+            <div class="card-info">
+                <h3>Adjustable Dumbbells 10kg</h3>
+                <span class="price">₹3,999</span>
+                <span class="old-price">₹5,881</span>
+                <div class="save">Save ₹1,882</div>
+            </div>
+        </div>
+    </a>
+
+    <a href="#" class="mobile-card">
+        <div class="card">
+            <div class="card-img">
+                <div class="badge">45% OFF</div>
+                <img src="../img/sportshoe.png" alt="Sports Running Shoes">
+            </div>
+            <div class="card-info">
+                <h3>Sports Running Shoes</h3>
+                <span class="price">₹2,199</span>
+                <span class="old-price">₹3,999</span>
+                <div class="save">Save ₹1,800</div>
+            </div>
+        </div>
+    </a>
+
+</div>
+
+  <footer>
+    <img src="../img/footer bg.png" alt="" class="footer_bg" />
+    <div class="footer_section">
+      <div class="footer_aboutapp">
+        <h2>MegaMart</h2>
+
+        <div class="footer_aboutapp1">
+          <span class="contact">Contact Us</span>
+          <div class="whatsapp">
+            <div><img src="../img/footer_whatsapp.png" alt="" /></div>
+            <div>
+              <span>Whats App</span>
+              <p>+1 202-918-2132</p>
+            </div>
+          </div>
+          <div class="call">
+            <div><img src="../img/footer call.png" alt="" /></div>
+            <div>
+              <span>Call Us</span>
+              <p>+1 202-918-2132</p>
+            </div>
+          </div>
+          <span class="download">Download App</span>
+          <div class="footer_img">
+            <img src="../img/footer app store.png" alt="" class="app" />
+            <img src="../img/footer google play.png" alt="" class="play" />
+          </div>
+        </div>
+      </div>
+
+      <div class="footer_list">
+        <div class="list1">
+          <div class="list_heading">
+            <h3>Most Popular Categories</h3>
+          </div>
+          <ul>
+            <li class="l1">Staples</li>
+            <li class="l2">Beverages</li>
+            <li class="l3">Personal Care</li>
+            <li class="l4">Home Care</li>
+            <li class="l5">Baby Care</li>
+            <li class="l6">Vegetables & Fruits</li>
+            <li class="l7">Snacks & Foods</li>
+            <li class="l8">Dairy & Bakery</li>
+          </ul>
+        </div>
+
+        <div class="list2">
+          <div class="list_heading2">
+            <h3>Customer Services</h3>
+          </div>
+          <ul>
+            <li class="l9"><a href="about.html">About Us</a></li>
+            <li class="l10">Terms & Conditions</li>
+            <li class="l11"> <a href="contact.html">FAQ</a></li>
+            <li class="l12">Privacy Policy</li>
+            <li class="l13">E-waste Policy</li>
+            <li class="l14">Cancellation & Return Policy</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">
+      <p>© 2022 All rights reserved. Reliance Retail Ltd.</p>
+    </div>
+  </footer>
+
+<script src="../script.js"></script>
+</body>
+</html>

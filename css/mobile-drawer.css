@@ -1,0 +1,492 @@
+/* ==========================================================================
+   MEGAMART PREMIUM MOBILE DRAWER COMPONENT
+   ========================================================================== */
+
+:root {
+    --drawer-width: 340px;
+    --drawer-primary: #008ECC;
+    --drawer-primary-light: #F3F9FB;
+    --drawer-primary-gradient: linear-gradient(135deg, #008ECC 0%, #00b4ff 100%);
+    --drawer-text-main: #1e293b;
+    --drawer-text-muted: #64748b;
+    --drawer-border-color: #e2e8f0;
+    --drawer-shadow: -10px 0 35px rgba(0, 142, 204, 0.15);
+    --drawer-overlay-bg: rgba(15, 23, 42, 0.6);
+    --drawer-radius: 12px;
+}
+
+/* 1. OVERLAY (Backdrop blur & glassmorphism) */
+.drawer-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: var(--drawer-overlay-bg);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 999999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.drawer-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Body scroll locking */
+body.no-scroll {
+    overflow: hidden !important;
+    touch-action: none;
+}
+
+/* 2. DRAWER CONTAINER */
+.mobile-drawer {
+    position: fixed;
+    top: 0;
+    right: calc(-1 * var(--drawer-width));
+    width: var(--drawer-width);
+    height: 100vh;
+    background: #ffffff;
+    z-index: 1000000;
+    box-shadow: var(--drawer-shadow);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    font-family: "Urbanist", "Poppins", sans-serif;
+}
+
+.mobile-drawer.active {
+    transform: translateX(calc(-1 * var(--drawer-width)));
+}
+
+/* Custom Scrollbar inside Drawer Body */
+.drawer-body::-webkit-scrollbar {
+    width: 6px;
+}
+
+.drawer-body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.drawer-body::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+}
+
+.drawer-body::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+/* 3. DRAWER HEADER (Logo & Close Button) */
+.drawer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    border-bottom: 1.5px solid var(--drawer-border-color);
+    background: #ffffff;
+    height: 70px;
+    flex-shrink: 0;
+}
+
+.drawer-header .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.drawer-header .logo-img {
+    height: 28px;
+    width: 28px;
+    object-fit: contain;
+}
+
+.drawer-header h3 {
+    font-size: 2.2rem !important;
+    font-weight: 800;
+    color: var(--drawer-primary);
+    letter-spacing: 0.5px;
+    margin: 0 !important;
+}
+
+.drawer-header .close-drawer {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--drawer-text-main);
+    transition: all 0.25s ease;
+}
+
+.drawer-header .close-drawer:hover {
+    background: var(--drawer-primary-light);
+    color: var(--drawer-primary);
+    transform: rotate(90deg);
+}
+
+.drawer-header .close-drawer i {
+    font-size: 2.4rem;
+}
+
+/* 4. USER PROFILE BANNER (State Driven) */
+.drawer-profile {
+    padding: 20px;
+    background: var(--drawer-primary-gradient);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 4px 15px rgba(0, 142, 204, 0.1);
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.drawer-profile::before {
+    content: '';
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 50%;
+    top: -40px;
+    right: -30px;
+}
+
+.drawer-profile .profile-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #ffffff;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.drawer-profile .profile-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    z-index: 2;
+}
+
+.drawer-profile .profile-welcome {
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.9;
+}
+
+.drawer-profile .profile-name {
+    font-size: 1.8rem;
+    font-weight: 700;
+    max-width: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.drawer-profile .profile-auth-btn {
+    margin-left: auto;
+    background: #ffffff;
+    color: var(--drawer-primary);
+    border: none;
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-size: 1.3rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    transition: all 0.25s ease;
+    text-decoration: none;
+    display: inline-block;
+    z-index: 3;
+}
+
+.drawer-profile .profile-auth-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    background: #f8fafc;
+}
+
+/* 5. DRAWER BODY */
+.drawer-body {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* 6. SEARCH BAR IN DRAWER */
+.drawer-search {
+    position: relative;
+    width: 100%;
+}
+
+.drawer-search input {
+    width: 100%;
+    padding: 12px 48px 12px 16px;
+    font-size: 1.4rem;
+    border: 1.5px solid var(--drawer-border-color);
+    border-radius: var(--drawer-radius);
+    outline: none;
+    background: var(--drawer-primary-light);
+    color: var(--drawer-text-main);
+    transition: all 0.3s ease;
+}
+
+.drawer-search input:focus {
+    border-color: var(--drawer-primary);
+    background: #ffffff;
+    box-shadow: 0 0 0 4px rgba(0, 142, 204, 0.12);
+}
+
+.drawer-search .search-btn-drawer {
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--drawer-primary);
+    transition: background 0.25s ease;
+}
+
+.drawer-search .search-btn-drawer:hover {
+    background: rgba(0, 142, 204, 0.08);
+}
+
+.drawer-search .search-btn-drawer i {
+    font-size: 1.8rem;
+}
+
+/* 7. SECTIONS & TITLES */
+.drawer-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.drawer-section .section-title {
+    font-size: 1.3rem !important;
+    font-weight: 700 !important;
+    text-transform: uppercase;
+    color: var(--drawer-text-muted);
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+    border-left: 3px solid var(--drawer-primary);
+    padding-left: 8px;
+}
+
+/* 8. NAVIGATION LINKS LIST */
+.drawer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.drawer-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 14px;
+    border-radius: var(--drawer-radius);
+    color: var(--drawer-text-main);
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.drawer-item i {
+    font-size: 2rem;
+    color: var(--drawer-text-muted);
+    transition: color 0.25s ease;
+}
+
+.drawer-item:hover {
+    background: var(--drawer-primary-light);
+    color: var(--drawer-primary);
+    padding-left: 18px;
+}
+
+.drawer-item:hover i {
+    color: var(--drawer-primary);
+}
+
+/* Active Nav Highlight styling */
+.drawer-item.active-link {
+    background: rgba(0, 142, 204, 0.08);
+    color: var(--drawer-primary);
+    border-right: 3px solid var(--drawer-primary);
+}
+
+.drawer-item.active-link i {
+    color: var(--drawer-primary);
+}
+
+/* Cart badge indicator inside item */
+.drawer-item .cart-badge {
+    background: #ef4444;
+    color: #ffffff;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border-radius: 50px;
+    min-width: 20px;
+    height: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px 6px;
+    margin-left: auto;
+    box-shadow: 0 4px 10px rgba(239, 68, 68, 0.35);
+}
+
+/* 9. CATEGORIES GRID */
+.drawer-categories-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.category-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 16px 10px;
+    background: #ffffff;
+    border: 1.5px solid var(--drawer-border-color);
+    border-radius: var(--drawer-radius);
+    text-decoration: none;
+    color: var(--drawer-text-main);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.category-card i {
+    font-size: 2.2rem;
+    color: var(--drawer-primary);
+    transition: transform 0.3s ease;
+}
+
+.category-card span {
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.category-card:hover {
+    border-color: var(--drawer-primary);
+    background: var(--drawer-primary-light);
+    box-shadow: 0 6px 18px rgba(0, 142, 204, 0.08);
+}
+
+.category-card:hover i {
+    transform: translateY(-3px) scale(1.05);
+}
+
+/* 10. AUTH FOOTER & LOGOUT button styling */
+.drawer-footer {
+    padding: 20px;
+    border-top: 1.5px solid var(--drawer-border-color);
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.logout-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 12px;
+    border: 1.5px solid #fda4af;
+    border-radius: var(--drawer-radius);
+    background: #fff1f2;
+    color: #e11d48;
+    font-size: 1.5rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.logout-btn:hover {
+    background: #ffe4e6;
+    border-color: #f43f5e;
+    color: #be123c;
+    box-shadow: 0 4px 15px rgba(225, 29, 72, 0.1);
+}
+
+.logout-btn i {
+    font-size: 1.8rem;
+}
+
+/* 11. MICRO-ANIMATIONS & RIPPLE EFFECT */
+.ripple-effect {
+    position: absolute;
+    border-radius: 50%;
+    transform: scale(0);
+    animation: ripple-animation 0.6s linear;
+    background-color: rgba(0, 142, 204, 0.15);
+    pointer-events: none;
+}
+
+@keyframes ripple-animation {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* 12. MOBILE RESPONSIVENESS AND SMALL SCREEN ADAPTATION */
+@media screen and (max-width: 480px) {
+    :root {
+        --drawer-width: 100%;
+    }
+    
+    .mobile-drawer {
+        border-radius: 0;
+        right: -100vw;
+    }
+    
+    .mobile-drawer.active {
+        transform: translateX(-100vw);
+    }
+    
+    .drawer-profile .profile-name {
+        max-width: 150px;
+    }
+}

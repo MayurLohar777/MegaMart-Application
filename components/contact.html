@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>MegaMart | Contact Us — Premium Support Experience</title>
+  <!-- Bootstrap 5 CSS + Remix Icons + Google Fonts -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    /* ========== GLOBAL STYLES ========== */
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+      font-family: "Urbanist", sans-serif;
+    }
+
+    html {
+      font-size: 62.5%;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      width: 100%;
+      background: #ffffff;
+      overflow-x: hidden;
+    }
+
+    :root {
+      --text-color: #008ECC;
+      --input-bg-color: #F3F9FB;
+      --logo-color: #008ECC;
+      --logo-bg: #F3F9FB;
+      --shadow-sm: 0 10px 30px -12px rgba(0,0,0,0.08);
+      --shadow-hover: 0 20px 35px -15px rgba(0,142,204,0.25);
+      --shadow-glow: 0 0 20px rgba(0,142,204,0.3);
+    }
+
+    .logo-text-color { color: var(--logo-color); }
+    .bg-logo { background-color: var(--logo-bg); }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
+    ::-webkit-scrollbar-thumb { background: var(--logo-color); border-radius: 10px; }
+    ::-webkit-scrollbar-thumb:hover { background: #0077b3; }
+
+    /* ========== ADVANCED HEADER ========== */
+    .header-fluid {
+      margin-bottom: -60px;
+    }
+
+
+
+    .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+    .mobile-menu-btn i { font-size: 2.6rem; color: var(--text-color); }
+    .mobile-nav-icons { display: none; align-items: center; gap: 12px; }
+    .mobile-nav-icons .nav-icon {
+      display: flex; align-items: center; justify-content: center;
+      width: 38px; height: 38px; background: var(--logo-bg);
+      border-radius: 50%; text-decoration: none; position: relative;
+      transition: 0.3s;
+    }
+    .mobile-nav-icons .nav-icon i { font-size: 1.8rem; color: var(--text-color); }
+    .mobile-nav-icons .nav-icon:hover { background: var(--text-color); }
+    .mobile-nav-icons .nav-icon:hover i { color: white; }
+    .mobile-cart-count {
+      position: absolute; top: -4px; right: -4px;
+      background: var(--text-color); color: white;
+      border-radius: 50%; padding: 2px 5px; font-size: 1rem; min-width: 16px;
+    }
+
+    @media (max-width: 1024px) { .header-fluid nav .search { width: 280px; } }
+    @media (max-width: 900px) {
+      .header-fluid nav .right_nav { display: none; }
+      .mobile-menu-btn { display: block; }
+      .mobile-nav-icons { display: flex; }
+      .header-fluid nav { padding: 12px 15px; }
+    }
+    @media (max-width: 576px) {
+      .header-fluid nav .logo h3 { font-size: 2rem; }
+      .header-fluid nav .logo .logo-icon { height: 38px; width: 38px; }
+      .mobile-nav-icons .nav-icon { width: 32px; height: 32px; }
+      .mobile-nav-icons .nav-icon i { font-size: 1.5rem; }
+    }
+
+    /* Offcanvas Menu */
+    .offcanvas-overlay {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.4); z-index: 10000; display: none;
+      backdrop-filter: blur(5px);
+    }
+    .offcanvas-overlay.active { display: block; }
+    .offcanvas-menu {
+      position: fixed; top: 0; right: -100%; width: 85%; max-width: 350px;
+      height: 100%; background: white; z-index: 10001;
+      box-shadow: -8px 0 30px rgba(0,0,0,0.15); transition: right 0.35s ease;
+      overflow-y: auto;
+    }
+    .offcanvas-menu.open { right: 0; }
+    .offcanvas-header {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 20px; border-bottom: 1px solid #eee;
+    }
+    .offcanvas-header h3 { font-size: 2rem; color: var(--text-color); margin: 0; }
+    .close-menu { background: none; border: none; font-size: 2.5rem; cursor: pointer; color: #666; }
+    .offcanvas-body { padding: 20px; }
+    .offcanvas-search { position: relative; margin-bottom: 20px; }
+    .offcanvas-search input {
+      width: 100%; padding: 12px 40px; border: 1px solid #eee;
+      border-radius: 12px; font-size: 1.4rem; background: var(--logo-bg);
+    }
+    .offcanvas-search i { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); font-size: 1.8rem; color: #999; }
+    .offcanvas-nav { list-style: none; padding: 0; }
+    .offcanvas-nav li { margin-bottom: 12px; }
+    .offcanvas-nav a {
+      text-decoration: none; color: #333; font-size: 1.5rem;
+      font-weight: 500; display: block; padding: 10px 0; transition: 0.3s;
+    }
+    .offcanvas-nav a:hover { color: var(--text-color); padding-left: 10px; }
+    .offcanvas-divider { height: 1px; background: #eee; margin: 20px 0; }
+    .offcanvas-buttons { display: flex; flex-direction: column; gap: 10px; }
+    .offcanvas-btn {
+      padding: 12px; text-align: center; border-radius: 12px;
+      font-size: 1.5rem; font-weight: 600; text-decoration: none;
+      transition: 0.3s;
+    }
+    .offcanvas-btn-primary { background: var(--text-color); color: white; }
+    .offcanvas-btn-outline { border: 1px solid var(--text-color); color: var(--text-color); }
+
+    /* ========== ADVANCED HERO SECTION ========== */
+    .contact-hero {
+      min-height: 85vh;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(135deg, #f8fafc 0%, #f0f5fe 100%);
+      position: relative;
+      overflow: hidden;
+      margin-top: 80px;
+    }
+    .contact-hero::before {
+      content: "";
+      position: absolute;
+      top: -20%;
+      right: -5%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(0,142,204,0.12) 0%, transparent 70%);
+      border-radius: 50%;
+      animation: float 8s ease-in-out infinite;
+    }
+    .contact-hero::after {
+      content: "";
+      position: absolute;
+      bottom: -15%;
+      left: -5%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(0,142,204,0.08) 0%, transparent 70%);
+      border-radius: 50%;
+      animation: float 6s ease-in-out infinite reverse;
+    }
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(20px, -20px); }
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background: rgba(0,142,204,0.1);
+      border: 1px solid rgba(0,142,204,0.2);
+      border-radius: 60px;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--text-color);
+      margin-bottom: 2rem;
+      backdrop-filter: blur(4px);
+    }
+    .hero-title {
+      font-size: 5rem;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 2rem;
+      color: #1a2c3e;
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, var(--text-color), #00b4ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .hero-desc {
+      font-size: 1.8rem;
+      color: #6b7280;
+      max-width: 550px;
+      margin-bottom: 3rem;
+      line-height: 1.6;
+    }
+    .hero-stats {
+      display: flex;
+      gap: 40px;
+      margin-top: 3rem;
+    }
+    .hero-stat h4 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: var(--text-color);
+      margin: 0;
+    }
+    .hero-stat p {
+      font-size: 1.3rem;
+      color: #6b7280;
+      margin: 0;
+    }
+
+    /* ========== CONTACT CARDS ========== */
+    .contact-card {
+      background: #ffffff;
+      border-radius: 28px;
+      padding: 3rem 2rem;
+      text-align: center;
+      transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      border: 1px solid rgba(0,0,0,0.04);
+      box-shadow: var(--shadow-sm);
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+    .contact-card::before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--text-color), #00b4ff);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s;
+    }
+    .contact-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-hover);
+      border-color: rgba(0,142,204,0.2);
+    }
+    .contact-card:hover::before { transform: scaleX(1); }
+    .card-icon {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, var(--logo-bg), #e8f8ff);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      transition: 0.3s;
+    }
+    .contact-card:hover .card-icon {
+      transform: scale(1.05);
+      background: var(--text-color);
+    }
+    .contact-card:hover .card-icon i { color: white; }
+    .card-icon i { font-size: 3rem; color: var(--text-color); transition: 0.3s; }
+
+    /* ========== BUSINESS HOURS SECTION ========== */
+    .business-hours-section {
+      background: linear-gradient(180deg, #f9fbfd 0%, #ffffff 100%);
+      padding: 60px 0;
+    }
+    .hours-card {
+      background: #ffffff;
+      border-radius: 28px;
+      padding: 3rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(0,0,0,0.04);
+      transition: 0.3s;
+    }
+    .hours-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-hover);
+    }
+    .hours-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 2rem;
+    }
+    .hours-icon {
+      width: 60px;
+      height: 60px;
+      background: var(--logo-bg);
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hours-icon i { font-size: 2.8rem; color: var(--text-color); }
+    .hours-tag {
+      display: inline-block;
+      padding: 4px 12px;
+      background: var(--logo-bg);
+      color: var(--text-color);
+      border-radius: 40px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    .hours-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 1.2rem 0;
+      border-bottom: 1px solid #eef2f6;
+    }
+    .hours-row:last-child { border-bottom: none; }
+    .hours-day { font-weight: 600; color: #1a2c3e; font-size: 1.5rem; }
+    .hours-time { color: #6b7280; font-size: 1.4rem; }
+    .support-badge {
+      background: linear-gradient(135deg, var(--logo-bg), #e8f8ff);
+      border-radius: 16px;
+      padding: 1.5rem;
+      text-align: center;
+      margin-top: 1.5rem;
+    }
+
+    /* ========== FORM SECTION ========== */
+    .form-wrapper {
+      background: #ffffff;
+      border-radius: 32px;
+      padding: 3.5rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(0,0,0,0.04);
+    }
+    .form-group { margin-bottom: 2rem; }
+    .form-group label {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #1a2c3e;
+      margin-bottom: 0.8rem;
+      display: block;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 1.2rem 1.6rem;
+      font-size: 1.5rem;
+      border: 2px solid #eef2f6;
+      border-radius: 16px;
+      transition: all 0.3s ease;
+      background: #ffffff;
+      outline: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: #008ECC;
+      box-shadow: 0 0 0 3px rgba(0,142,204,0.1);
+    }
+    .btn-submit {
+      background: linear-gradient(95deg, #008ECC, #00b4ff);
+      color: white;
+      padding: 1.4rem;
+      border-radius: 60px;
+      font-size: 1.6rem;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+    .btn-submit:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0,142,204,0.3);
+    }
+
+    /* ========== LARGER MAP SECTION ========== */
+    .map-section {
+      padding: 60px 0;
+    }
+    .map-card {
+      background: #ffffff;
+      border-radius: 32px;
+      overflow: hidden;
+      box-shadow: var(--shadow-hover);
+      border: 1px solid rgba(0,142,204,0.1);
+    }
+    .map-header {
+      padding: 2rem 2rem 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    .map-header h3 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #1a2c3e;
+    }
+    .map-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 8px 16px;
+      background: var(--logo-bg);
+      border-radius: 40px;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--text-color);
+    }
+    .map-wrapper {
+      width: 100%;
+      height: 500px;
+      margin-top: 1rem;
+    }
+    .map-wrapper iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    .map-address-bar {
+      padding: 2rem;
+      background: var(--logo-bg);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    .address-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .address-info i {
+      font-size: 2rem;
+      color: var(--text-color);
+    }
+    .address-info span {
+      font-size: 1.4rem;
+      color: #4a5568;
+    }
+    .direction-btn {
+      padding: 10px 24px;
+      background: var(--text-color);
+      color: white;
+      border-radius: 40px;
+      text-decoration: none;
+      font-size: 1.4rem;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+    .direction-btn:hover {
+      background: #0077b3;
+      transform: translateY(-2px);
+    }
+
+    /* ========== FAQ SECTION ========== */
+    .faq-section { background: linear-gradient(180deg, #f9fbfd 0%, #ffffff 100%); padding: 80px 0; }
+    .faq-item {
+      background: #ffffff;
+      border-radius: 20px;
+      margin-bottom: 1.5rem;
+      border: 1px solid rgba(0,0,0,0.04);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .faq-item:hover { border-color: rgba(0,142,204,0.2); box-shadow: var(--shadow-sm); }
+    .faq-question {
+      padding: 2rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #1a2c3e;
+    }
+    .faq-question i { font-size: 2rem; color: #008ECC; transition: transform 0.3s; }
+    .faq-item.active .faq-question i { transform: rotate(180deg); }
+    .faq-answer {
+      padding: 0 2rem 2rem;
+      font-size: 1.4rem;
+      color: #6b7280;
+      line-height: 1.6;
+      display: none;
+    }
+    .faq-item.active .faq-answer { display: block; }
+
+    /* Social Icons */
+    .social-icon-lg {
+      width: 48px;
+      height: 48px;
+      background: var(--logo-bg);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #008ECC;
+      font-size: 2.2rem;
+      transition: all 0.3s;
+      text-decoration: none;
+    }
+    .social-icon-lg:hover { background: #008ECC; color: white; transform: translateY(-3px); }
+
+    /* Section Headers */
+    .section-container { max-width: 1320px; margin: 0 auto; padding: 0 20px; }
+    .section-tag {
+      display: inline-block;
+      padding: 0.6rem 1.6rem;
+      background: linear-gradient(135deg, #E8F8FF, #DCF2FA);
+      color: #008ECC;
+      border-radius: 60px;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+    }
+    .section-title {
+      font-size: 3.6rem;
+      font-weight: 800;
+      margin-bottom: 1.2rem;
+      color: #1a2c3e;
+      letter-spacing: -0.5px;
+    }
+
+    /* Scroll Reveal */
+    .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(35px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal-on-scroll.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ========== ADVANCED FOOTER ========== */
+    
+    @media (max-width: 992px) {
+      .hero-title { font-size: 3.5rem; }
+      .section-title { font-size: 3rem; }
+      .form-wrapper { padding: 2.5rem; }
+      .map-wrapper { height: 400px; }
+    }
+    @media (max-width: 768px) {
+      .hero-title { font-size: 2.8rem; }
+      .section-title { font-size: 2.4rem; }
+      .footer_section { flex-direction: column; text-align: center; align-items: center; }
+      .footer_list { justify-content: center; text-align: center; }
+      .contact-title::after { left: 50%; transform: translateX(-50%); }
+      .hero-stats { flex-wrap: wrap; justify-content: center; gap: 20px; text-align: center; }
+      .map-header { flex-direction: column; text-align: center; }
+      .map-address-bar { flex-direction: column; text-align: center; }
+      .address-info { justify-content: center; }
+    }
+    @media (max-width: 480px) {
+      .hero-title { font-size: 2.2rem; }
+      .section-title { font-size: 2rem; }
+      .form-wrapper { padding: 2rem; }
+      .map-wrapper { height: 350px; }
+    }
+  </style>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../responsive_style.css">
+</head>
+<body>
+
+<header class="header-fluid">
+  <nav>
+    <div class="logo">
+      <img src="../img/download.svg" class="logo-img" alt="logo" />
+      <h3>MegaMart</h3>
+    </div>
+    <div class="resp_icon">
+      <img src="../img/Search.png" alt="search" />
+      <img src="../img/user.png" alt="user" />
+      <img src="../img/Buy.png" alt="cart" />
+    </div>
+    <div class="right_nav">
+      <div class="search">
+        <input type="text" placeholder="Search essentials, groceries and more..." />
+        <img src="../img/Search.png" alt="search" class="search-img" />
+        <img src="../img/list.png" alt="menu" class="list-img" />
+      </div>
+      <div class="login-page">
+        <i class="ri-user-3-line"></i>
+        <a href="signin.html">Sign Up/Sign In</a>
+        <div class="line"></div>
+        <img src="../img/Buy.png" alt="cart" />
+        <a href="cart.html">Cart <span class="cart-badge cart-count">0</span></a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<!-- <div class="offcanvas-overlay" id="offcanvasOverlay"></div>
+<div class="offcanvas-menu" id="offcanvasMenu">
+  <div class="offcanvas-header"><h3>MegaMart</h3><button class="close-menu" id="closeMenu">&times;</button></div>
+  <div class="offcanvas-body">
+    <div class="offcanvas-search"><i class="ri-search-line"></i><input type="text" placeholder="Search products..."></div>
+    <ul class="offcanvas-nav"><li><a href="#">Home</a></li><li><a href="#">Shop</a></li><li><a href="#">Offers</a></li><li><a href="#">About Us</a></li><li><a href="#" style="color:#008ECC;">Contact</a></li></ul>
+    <div class="offcanvas-divider"></div>
+    <ul class="offcanvas-nav"><li><strong>Categories</strong></li><li><a href="#">Electronics</a></li><li><a href="#">Fashion</a></li><li><a href="#">Groceries</a></li><li><a href="#">Home & Kitchen</a></li></ul>
+    <div class="offcanvas-divider"></div>
+    <div class="offcanvas-buttons"><a href="#" class="offcanvas-btn offcanvas-btn-primary">Sign Up</a><a href="#" class="offcanvas-btn offcanvas-btn-outline">Sign In</a></div>
+  </div>
+</div> -->
+
+<!-- ==================== ADVANCED HERO SECTION ==================== -->
+<section class="contact-hero">
+  <div class="section-container">
+    <div class="row align-items-center">
+      <div class="col-lg-7 reveal-on-scroll">
+        <span class="hero-badge"><i class="ri-customer-service-2-fill"></i> 24/7 Premium Support</span>
+        <h1 class="hero-title">We're Here to <span class="gradient-text">Elevate</span> Your Experience</h1>
+        <p class="hero-desc">Whether you need assistance with an order, have a question, or just want to say hello — our dedicated team is ready to provide world-class support around the clock.</p>
+        <div class="d-flex gap-3 flex-wrap">
+          <button class="btn-submit" style="width: auto; padding: 1.2rem 2.8rem;">Live Chat <i class="ri-message-3-line ms-2"></i></button>
+          <button class="btn-submit" style="width: auto; background: transparent; border: 2px solid #008ECC; color: #008ECC; box-shadow: none;">Explore FAQ <i class="ri-question-line ms-2"></i></button>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat"><h4>50K+</h4><p>Happy Customers</p></div>
+          <div class="hero-stat"><h4>24/7</h4><p>Support Available</p></div>
+          <div class="hero-stat"><h4>&lt;2h</h4><p>Response Time</p></div>
+        </div>
+      </div>
+      <div class="col-lg-5 reveal-on-scroll text-center">
+        <div class="contact-card" style="background: linear-gradient(135deg, #fff, #f8fafc);">
+          <div class="card-icon mx-auto"><i class="ri-customer-service-2-line"></i></div>
+          <h3 class="fw-bold mb-2">Need Immediate Help?</h3>
+          <p class="text-secondary">Call our priority support hotline</p>
+          <h2 class="logo-text-color fw-bold">+91 1800-123-4567</h2>
+          <p class="text-secondary small mt-2">Available 24/7 for urgent inquiries</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CONTACT INFO CARDS ==================== -->
+<section class="container py-5">
+  <div class="row g-4">
+    <div class="col-md-4 reveal-on-scroll"><div class="contact-card"><div class="card-icon mx-auto"><i class="ri-map-pin-line"></i></div><h3 class="fw-bold mb-3">Visit Our HQ</h3><p class="text-secondary">123 MegaMart Tower, Cyber City<br>Gurugram, Haryana - 122002</p><a href="#" class="text-primary fw-semibold mt-2 d-inline-block">Get Directions <i class="ri-arrow-right-line ms-1"></i></a></div></div>
+    <div class="col-md-4 reveal-on-scroll"><div class="contact-card"><div class="card-icon mx-auto"><i class="ri-phone-line"></i></div><h3 class="fw-bold mb-3">Call Concierge</h3><p class="text-secondary">+91 1800-123-4567<br>+91 98765-43210<br>Available 24/7</p></div></div>
+    <div class="col-md-4 reveal-on-scroll"><div class="contact-card"><div class="card-icon mx-auto"><i class="ri-mail-line"></i></div><h3 class="fw-bold mb-3">Email Support</h3><p class="text-secondary">support@megamart.com<br>priority@megamart.com<br>Response within 2h</p></div></div>
+  </div>
+</section>
+
+<!-- ==================== BUSINESS HOURS SECTION ==================== -->
+<section class="business-hours-section">
+  <div class="section-container">
+    <div class="row g-5">
+      <div class="col-lg-6 reveal-on-scroll">
+        <div class="hours-card">
+          <div class="hours-header">
+            <div class="hours-icon"><i class="ri-time-line"></i></div>
+            <div><span class="hours-tag">Operating Hours</span><h3 class="fw-bold mb-0">We're Here When You Need Us</h3></div>
+          </div>
+          <div class="hours-row"><span class="hours-day">Monday - Friday</span><span class="hours-time">9:00 AM - 9:00 PM</span></div>
+          <div class="hours-row"><span class="hours-day">Saturday</span><span class="hours-time">10:00 AM - 8:00 PM</span></div>
+          <div class="hours-row"><span class="hours-day">Sunday</span><span class="hours-time">10:00 AM - 6:00 PM</span></div>
+          <div class="support-badge"><i class="ri-customer-service-2-fill"></i> <strong>Customer Support Available 24/7</strong> — Always here for you</div>
+        </div>
+      </div>
+      <div class="col-lg-6 reveal-on-scroll">
+        <div class="hours-card">
+          <div class="hours-header">
+            <div class="hours-icon"><i class="ri-rocket-line"></i></div>
+            <div><span class="hours-tag">Express Support</span><h3 class="fw-bold mb-0">Priority Services</h3></div>
+          </div>
+          <div class="hours-row"><span class="hours-day">📞 Priority Hotline</span><span class="hours-time">24/7 Dedicated Line</span></div>
+          <div class="hours-row"><span class="hours-day">💬 Live Chat</span><span class="hours-time">Instant Response</span></div>
+          <div class="hours-row"><span class="hours-day">✉️ Email Support</span><span class="hours-time">&lt; 2 Hours Response</span></div>
+          <div class="hours-row"><span class="hours-day">🚚 Delivery Support</span><span class="hours-time">Order Tracking 24/7</span></div>
+          <div class="support-badge" style="background: linear-gradient(135deg, #E8F8FF, #DCF2FA);"><i class="ri-vip-crown-line"></i> <strong>MegaMart Elite Members</strong> — Get exclusive priority support</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FORM & LARGER MAP SECTION ==================== -->
+<section class="container py-5">
+  <div class="row g-5">
+    <div class="col-lg-5 reveal-on-scroll">
+      <div class="form-wrapper">
+        <h2 class="fw-bold mb-4">Send Us a <span class="logo-text-color">Message</span></h2>
+        <p class="text-secondary mb-4">Fill out the form below and we'll get back to you within 24 hours.</p>
+        <form id="contactForm">
+          <div class="row g-3">
+            <div class="col-12"><div class="form-group"><label>Full Name *</label><input type="text" placeholder="Enter your full name" required></div></div>
+            <div class="col-12"><div class="form-group"><label>Email Address *</label><input type="email" placeholder="you@example.com" required></div></div>
+            <div class="col-12"><div class="form-group"><label>Phone Number</label><input type="tel" placeholder="+91 98765 43210"></div></div>
+            <div class="col-12"><div class="form-group"><label>Subject *</label><select required><option>Order Inquiry</option><option>Return & Refund</option><option>Product Information</option><option>Partnership Opportunity</option><option>Other</option></select></div></div>
+            <div class="col-12"><div class="form-group"><label>Message *</label><textarea rows="4" placeholder="Tell us how we can help you..." required></textarea></div></div>
+            <div class="col-12"><button type="submit" class="btn-submit">Send Message <i class="ri-send-plane-line ms-2"></i></button></div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="col-lg-7 reveal-on-scroll">
+      <div class="map-card">
+        <div class="map-header">
+          <h3><i class="ri-map-pin-line logo-text-color me-2"></i> Find Our Location</h3>
+          <span class="map-badge"><i class="ri-building-line"></i> Corporate Headquarters</span>
+        </div>
+        <div class="map-wrapper">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3506.223391971425!2d77.089537315079!3d28.49946878245629!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d1935266f188d%3A0x7d4a5a8e5e5e5e5e!2sCyber%20City%2C%20Gurugram!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <div class="map-address-bar">
+          <div class="address-info">
+            <i class="ri-map-pin-line"></i>
+            <span>123 MegaMart Tower, Cyber City, Gurugram, Haryana - 122002, India</span>
+          </div>
+          <a href="#" class="direction-btn" target="_blank">Get Directions <i class="ri-navigation-line ms-2"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FAQ SECTION ==================== -->
+<section class="faq-section">
+  <div class="section-container">
+    <div class="text-center reveal-on-scroll"><span class="section-tag"><i class="ri-question-line"></i> FAQ</span><h2 class="section-title">Frequently Asked <span class="logo-text-color">Questions</span></h2><p class="section-subtitle">Find quick answers to common questions about MegaMart</p></div>
+    <div class="row justify-content-center mt-5"><div class="col-lg-8">
+      <div class="faq-item reveal-on-scroll"><div class="faq-question"><span>How can I track my order?</span><i class="ri-arrow-down-s-line"></i></div><div class="faq-answer">Log into your MegaMart account, go to "My Orders", and click the tracking link. You'll also receive real-time SMS/email updates.</div></div>
+      <div class="faq-item reveal-on-scroll"><div class="faq-question"><span>What is your return policy?</span><i class="ri-arrow-down-s-line"></i></div><div class="faq-answer">7-day hassle-free return policy. Items must be unused in original packaging. Damaged items qualify for free returns.</div></div>
+      <div class="faq-item reveal-on-scroll"><div class="faq-question"><span>How long does delivery take?</span><i class="ri-arrow-down-s-line"></i></div><div class="faq-answer">Same-day delivery in metros, 2-4 business days for other cities. Premium members get guaranteed next-day delivery.</div></div>
+      <div class="faq-item reveal-on-scroll"><div class="faq-question"><span>Is my payment secure?</span><i class="ri-arrow-down-s-line"></i></div><div class="faq-answer">Absolutely! We use SSL encryption and PCI-compliant payment gateways. Your financial data is never stored on our servers.</div></div>
+    </div></div>
+  </div>
+</section>
+
+<!-- ==================== SOCIAL CONNECT ==================== -->
+<section class="container py-5">
+  <div class="row g-4">
+    <div class="col-md-6 reveal-on-scroll">
+      <div class="hours-card text-center">
+        <div class="hours-icon mx-auto mb-3"><i class="ri-global-line"></i></div>
+        <h3 class="fw-bold mb-3">Connect With Us</h3>
+        <p class="text-secondary mb-4">Follow us on social media for updates, offers, and more!</p>
+        <div class="d-flex gap-3 justify-content-center flex-wrap">
+          <a href="#" class="social-icon-lg"><i class="ri-facebook-circle-fill"></i></a>
+          <a href="#" class="social-icon-lg"><i class="ri-instagram-fill"></i></a>
+          <a href="#" class="social-icon-lg"><i class="ri-twitter-x-fill"></i></a>
+          <a href="#" class="social-icon-lg"><i class="ri-linkedin-box-fill"></i></a>
+          <a href="#" class="social-icon-lg"><i class="ri-youtube-fill"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 reveal-on-scroll">
+      <div class="hours-card text-center">
+        <div class="hours-icon mx-auto mb-3"><i class="ri-apps-2-line"></i></div>
+        <h3 class="fw-bold mb-3">Download Our App</h3>
+        <p class="text-secondary mb-4">Get the best shopping experience on your phone</p>
+        <div class="d-flex gap-3 justify-content-center flex-wrap">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='130' height='45' viewBox='0 0 130 45'%3E%3Crect width='130' height='45' rx='8' fill='%23000'/%3E%3Ctext x='15' y='28' fill='white' font-size='12'%3EApp Store%3C/text%3E%3C/svg%3E" style="height: 45px; cursor: pointer;">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='130' height='45' viewBox='0 0 130 45'%3E%3Crect width='130' height='45' rx='8' fill='%23000'/%3E%3Ctext x='15' y='28' fill='white' font-size='12'%3EGoogle Play%3C/text%3E%3C/svg%3E" style="height: 45px; cursor: pointer;">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== ADVANCED FOOTER ==================== -->
+<footer>
+      <img src="../img/footer bg.png" alt="" class="footer_bg" />
+      <div class="footer_section">
+        <div class="footer_aboutapp">
+          <h2>MegaMart</h2>
+
+          <div class="footer_aboutapp1">
+            <span class="contact">Contact Us</span>
+            <div class="whatsapp">
+              <div><img src="../img/footer_whatsapp.png" alt="" /></div>
+              <div>
+                <span>Whats App</span>
+                <p>+1 202-918-2132</p>
+              </div>
+            </div>
+            <div class="call">
+              <div><img src="../img/footer call.png" alt="" /></div>
+              <div>
+                <span>Call Us</span>
+                <p>+1 202-918-2132</p>
+              </div>
+            </div>
+            <span class="download">Download App</span>
+            <div class="footer_img">
+              <img src="../img/footer app store.png" alt="" class="app" />
+              <img src="../img/footer google play.png" alt="" class="play" />
+            </div>
+          </div>
+        </div>
+
+        <div class="footer_list">
+          <div class="list1">
+            <div class="list_heading">
+              <h3>Most Popular Categories</h3>
+            </div>
+            <ul>
+              <li class="l1">Staples</li>
+              <li class="l2">Beverages</li>
+              <li class="l3">Personal Care</li>
+              <li class="l4">Home Care</li>
+              <li class="l5">Baby Care</li>
+              <li class="l6">Vegetables & Fruits</li>
+              <li class="l7">Snacks & Foods</li>
+              <li class="l8">Dairy & Bakery</li>
+            </ul>
+          </div>
+
+          <div class="list2">
+            <div class="list_heading2">
+              <h3>Customer Services</h3>
+            </div>
+            <ul>
+              <li class="l9"><a href="../components/about.html">About Us</a></li>
+              <li class="l10">Terms & Conditions</li>
+              <li class="l11"> <a href="../components/contact.html">FAQ</a></li>
+              <li class="l12">Privacy Policy</li>
+              <li class="l13">E-waste Policy</li>
+              <li class="l14">Cancellation & Return Policy</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>© 2022 All rights reserved. Reliance Retail Ltd.</p>
+      </div>
+    </footer>
+
+<script src="../script.js"></script>
+<script>
+  // FAQ Accordion
+  const revealElements = document.querySelectorAll('.reveal-on-scroll');
+  function checkReveal() { revealElements.forEach(el => { const rect = el.getBoundingClientRect(); if (rect.top < window.innerHeight - 100) el.classList.add('revealed'); }); }
+  window.addEventListener('load', checkReveal);
+  window.addEventListener('scroll', checkReveal);
+  
+  // FAQ Accordion
+  const faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach(item => { const question = item.querySelector('.faq-question'); question.addEventListener('click', () => { const isActive = item.classList.contains('active'); faqItems.forEach(i => i.classList.remove('active')); if (!isActive) item.classList.add('active'); }); });
+  
+  // Form Submission
+  const contactForm = document.getElementById('contactForm');
+  if (contactForm) { contactForm.addEventListener('submit', (e) => { e.preventDefault(); alert('Thank you! Our team will respond within 24 hours.'); contactForm.reset(); }); }
+  
+  console.log("MegaMart Advanced Contact Page Loaded with Larger Map!");
+</script>
+</body>
+</html>

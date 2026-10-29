@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Profile - MegaMart</title>
+  
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="../responsive_style.css" />
+  <link rel="stylesheet" href="../css/pages-enhanced.css" />
+  
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- Reused Navbar -->
+  <header class="header-fluid">
+    <nav>
+      <div class="logo">
+        <a href="../index.html" style="display:flex; align-items:center; text-decoration:none; color:inherit;">
+            <img src="../img/download.svg" class="logo-img" alt="logo" />
+            <h3>MegaMart</h3>
+        </a>
+      </div>
+      <div class="resp_icon">
+        <img src="../img/Search.png" alt="">
+        <img src="../img/user.png" alt="">
+        <img src="../img/Buy.png" alt="">
+      </div>
+      <div class="right_nav">
+        <div class="search">
+          <input type="text" placeholder="Search essentials, groceries and more..." />
+          <img src="../img/Search.png" alt="search" class="search-img" />
+          <img src="../img/list.png" alt="list" class="list-img" />
+        </div>
+        <div class="login-page">
+          <i class="ri-user-3-line"></i>
+          <a href="profile.html">Profile</a>
+          <div class="line"></div>
+          <img src="../img/Buy.png" alt="buy" />
+          <a href="cart.html">Cart <span class="cart-badge cart-count">0</span></a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="premium-container">
+    <div class="page-header">
+      <h1>My Account</h1>
+    </div>
+
+    <div class="layout-grid" style="grid-template-columns: 280px 1fr;">
+      
+      <!-- Profile Sidebar -->
+      <div class="profile-sidebar">
+        <div class="profile-user-info">
+          <div class="profile-avatar">J</div>
+          <h3 style="font-size: 18px; font-weight: 700; color: var(--text-dark);">John Doe</h3>
+          <p style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">john.doe@example.com</p>
+        </div>
+        
+        <ul class="profile-nav-menu">
+          <li><a href="#" class="profile-nav-item active" data-target="panel-info"><i class="ri-user-line"></i> Personal Info</a></li>
+          <li><a href="#" class="profile-nav-item" data-target="panel-orders"><i class="ri-file-list-3-line"></i> Order History</a></li>
+          <li><a href="#" class="profile-nav-item" data-target="panel-addresses"><i class="ri-map-pin-line"></i> Saved Addresses</a></li>
+          <li><a href="#" class="profile-nav-item" data-target="panel-payments"><i class="ri-bank-card-line"></i> Payment Methods</a></li>
+          <li><a href="#" class="profile-nav-item" data-target="panel-wishlist"><i class="ri-heart-line"></i> Wishlist</a></li>
+          <li><a href="#" class="profile-nav-item" data-target="panel-settings"><i class="ri-settings-3-line"></i> Account Settings</a></li>
+          <li style="border-top: 1px solid var(--border-color); margin-top: 8px; padding-top: 8px;">
+            <a href="../index.html" class="profile-nav-item" style="color: var(--danger-color);"><i class="ri-logout-box-r-line"></i> Logout</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Main Profile Content Panels -->
+      <div class="profile-content">
+        
+        <!-- Personal Info Panel -->
+        <div class="premium-card profile-panel" id="panel-info">
+          <h2 style="font-size: 20px; font-weight: 700; margin-bottom: 24px;">Personal Information</h2>
+          <form>
+            <div class="layout-grid" style="grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 0;">
+              <div class="form-group">
+                <label class="form-label">First Name</label>
+                <input type="text" class="form-input" value="John">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Last Name</label>
+                <input type="text" class="form-input" value="Doe">
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">Email Address</label>
+              <input type="email" class="form-input" value="john.doe@example.com" readonly>
+              <span style="font-size:12px; color:var(--text-muted); display:inline-block; margin-top:4px;">To change your email, please verify your current one.</span>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Phone Number</label>
+              <input type="tel" class="form-input" value="+1 (555) 123-4567">
+            </div>
+
+            <div style="display:flex; justify-content:flex-end;">
+              <button type="button" class="btn-primary" style="width:auto;" onclick="showToast('Profile Updated Successfully!')">Save Changes</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Orders Panel -->
+        <div class="premium-card profile-panel" id="panel-orders" style="display: none;">
+          <h2 style="font-size: 20px; font-weight: 700; margin-bottom: 24px;">Order History</h2>
+          
+          <div style="border: 1px solid var(--border-color); border-radius: var(--border-radius-sm); margin-bottom: 16px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; padding: 16px; background:#f9fafb; border-bottom:1px solid var(--border-color);">
+              <div>
+                <strong style="display:block;">Order #MM-934521</strong>
+                <span style="font-size:13px; color:var(--text-muted);">Placed on: Oct 12, 2025</span>
+              </div>
+              <span style="background:var(--success-color); color:white; padding:4px 12px; border-radius:50px; font-size:12px; font-weight:600;">Delivered</span>
+            </div>
+            <div style="padding: 16px; display:flex; justify-content:space-between; align-items:center;">
+              <div style="display:flex; gap:16px; align-items:center;">
+                <img src="../img/mobile1.png" style="width:60px; height:60px; object-fit:contain; border-radius:4px;">
+                <div>
+                  <strong style="display:block;">Galaxy S22 Ultra</strong>
+                  <span style="font-size:13px; color:var(--text-muted);">Qty: 1</span>
+                </div>
+              </div>
+              <div style="text-align:right;">
+                <strong style="font-size:16px;">₹74,999</strong>
+                <a href="#" class="btn-text primary" style="font-size:13px; margin-top:4px;">View Invoice</a>
+              </div>
+            </div>
+          </div>
+
+          <div style="border: 1px solid var(--border-color); border-radius: var(--border-radius-sm); margin-bottom: 16px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; padding: 16px; background:#f9fafb; border-bottom:1px solid var(--border-color);">
+              <div>
+                <strong style="display:block;">Order #MM-662301</strong>
+                <span style="font-size:13px; color:var(--text-muted);">Placed on: Aug 05, 2025</span>
+              </div>
+              <span style="background:var(--text-muted); color:white; padding:4px 12px; border-radius:50px; font-size:12px; font-weight:600;">Cancelled</span>
+            </div>
+            <div style="padding: 16px; display:flex; justify-content:space-between; align-items:center;">
+              <div style="display:flex; gap:16px; align-items:center;">
+                <img src="../img/category4.png" style="width:60px; height:60px; object-fit:contain; border-radius:4px;">
+                <div>
+                  <strong style="display:block;">Modern Sofa Minimalist</strong>
+                  <span style="font-size:13px; color:var(--text-muted);">Qty: 1</span>
+                </div>
+              </div>
+              <div style="text-align:right;">
+                <strong style="font-size:16px;">₹32,000</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Addresses Panel -->
+        <div class="premium-card profile-panel" id="panel-addresses" style="display: none;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
+            <h2 style="font-size: 20px; font-weight: 700; margin:0;">Saved Addresses</h2>
+            <button class="btn-outline" style="padding: 8px 16px; font-size: 14px;"><i class="ri-add-line"></i> Add New</button>
+          </div>
+          
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px;">
+            <div style="border:1px solid var(--primary-color); border-radius:var(--border-radius-sm); padding:16px; background:#f0f9ff; position:relative;">
+              <span style="position:absolute; top:16px; right:16px; background:var(--primary-color); color:white; padding:2px 8px; border-radius:4px; font-size:10px; font-weight:600;">DEFAULT</span>
+              <strong style="display:block; margin-bottom:8px;">Home</strong>
+              <p style="font-size:14px; color:var(--text-muted); line-height:1.6; margin-bottom:16px;">
+                John Doe<br>
+                123 Main Street, Apt 4B<br>
+                New York, NY 10001
+              </p>
+              <div style="display:flex; gap:12px;">
+                <button class="btn-text primary">Edit</button>
+                <button class="btn-text">Delete</button>
+              </div>
+            </div>
+            
+            <div style="border:1px solid var(--border-color); border-radius:var(--border-radius-sm); padding:16px; position:relative;">
+              <strong style="display:block; margin-bottom:8px;">Office</strong>
+              <p style="font-size:14px; color:var(--text-muted); line-height:1.6; margin-bottom:16px;">
+                John Doe<br>
+                500 Tech Parkway, Suite 100<br>
+                San Francisco, CA 94105
+              </p>
+              <div style="display:flex; gap:12px;">
+                <button class="btn-text primary">Edit</button>
+                <button class="btn-text">Delete</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Payments Panel -->
+        <div class="premium-card profile-panel" id="panel-payments" style="display: none;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
+            <h2 style="font-size: 20px; font-weight: 700; margin:0;">Payment Methods</h2>
+            <button class="btn-outline" style="padding: 8px 16px; font-size: 14px;"><i class="ri-add-line"></i> Add Card</button>
+          </div>
+          
+          <div style="border:1px solid var(--border-color); border-radius:var(--border-radius-sm); padding:16px; display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <div style="display:flex; gap:16px; align-items:center;">
+              <i class="ri-visa-line" style="font-size:32px; color:#1a1f71;"></i>
+              <div>
+                <strong style="display:block;">Visa ending in 4242</strong>
+                <span style="font-size:13px; color:var(--text-muted);">Expires 12/26</span>
+              </div>
+            </div>
+            <button class="btn-text">Remove</button>
+          </div>
+
+          <div style="border:1px solid var(--border-color); border-radius:var(--border-radius-sm); padding:16px; display:flex; justify-content:space-between; align-items:center;">
+            <div style="display:flex; gap:16px; align-items:center;">
+              <i class="ri-mastercard-line" style="font-size:32px; color:#eb001b;"></i>
+              <div>
+                <strong style="display:block;">Mastercard ending in 8899</strong>
+                <span style="font-size:13px; color:var(--text-muted);">Expires 08/27</span>
+              </div>
+            </div>
+            <button class="btn-text">Remove</button>
+          </div>
+        </div>
+
+        <!-- Wishlist Panel -->
+        <div class="premium-card profile-panel" id="panel-wishlist" style="display: none;">
+          <h2 style="font-size: 20px; font-weight: 700; margin-bottom: 24px;">My Wishlist</h2>
+          
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px;">
+            <!-- Wishlist Card 1 -->
+            <div style="border:1px solid var(--border-color); border-radius:var(--border-radius-sm); padding:16px; display:flex; gap:16px;">
+              <img src="../img/mobile2.png" style="width:80px; height:80px; object-fit:contain; border-radius:4px; background:var(--secondary-color);">
+              <div style="display:flex; flex-direction:column; justify-content:space-between; flex:1;">
+                <div>
+                  <strong style="display:block; font-size:15px; margin-bottom:4px;">Galaxy M13</strong>
+                  <span style="font-size:16px; font-weight:700; color:var(--text-dark);">₹10,499</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-top:12px;">
+                  <button class="btn-text primary" style="font-size:13px;"><i class="ri-shopping-cart-line"></i> Move to Cart</button>
+                  <button class="btn-text" style="font-size:18px;"><i class="ri-delete-bin-line"></i></button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Wishlist Card 2 -->
+            <div style="border:1px solid var(--border-color); border-radius:var(--border-radius-sm); padding:16px; display:flex; gap:16px;">
+              <img src="../img/category5.png" style="width:80px; height:80px; object-fit:contain; border-radius:4px; background:var(--secondary-color);">
+              <div style="display:flex; flex-direction:column; justify-content:space-between; flex:1;">
+                <div>
+                  <strong style="display:block; font-size:15px; margin-bottom:4px;">Premium Watch</strong>
+                  <span style="font-size:16px; font-weight:700; color:var(--text-dark);">₹12,000</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-top:12px;">
+                  <button class="btn-text primary" style="font-size:13px;"><i class="ri-shopping-cart-line"></i> Move to Cart</button>
+                  <button class="btn-text" style="font-size:18px;"><i class="ri-delete-bin-line"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Settings Panel -->
+        <div class="premium-card profile-panel" id="panel-settings" style="display: none;">
+          <h2 style="font-size: 20px; font-weight: 700; margin-bottom: 24px;">Account Settings</h2>
+          
+          <div style="margin-bottom: 24px;">
+            <h3 style="font-size:16px; font-weight:600; margin-bottom:12px;">Email Notifications</h3>
+            <label style="display:flex; align-items:center; gap:12px; margin-bottom:12px; cursor:pointer;">
+              <input type="checkbox" checked> <span style="font-size:14px;">Order updates and shipping info</span>
+            </label>
+            <label style="display:flex; align-items:center; gap:12px; margin-bottom:12px; cursor:pointer;">
+              <input type="checkbox" checked> <span style="font-size:14px;">Promotions, deals, and discounts</span>
+            </label>
+            <label style="display:flex; align-items:center; gap:12px; cursor:pointer;">
+              <input type="checkbox"> <span style="font-size:14px;">MegaMart Newsletter</span>
+            </label>
+          </div>
+
+          <hr style="border:none; border-top:1px solid var(--border-color); margin:24px 0;">
+
+          <div>
+            <h3 style="font-size:16px; font-weight:600; margin-bottom:12px; color:var(--danger-color);">Danger Zone</h3>
+            <p style="font-size:14px; color:var(--text-muted); margin-bottom:16px;">Once you delete your account, there is no going back. Please be certain.</p>
+            <button class="btn-outline" style="border-color:var(--danger-color); color:var(--danger-color); width:auto;">Delete Account</button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Reused Footer -->
+  <footer>
+    <img src="../img/footer bg.png" alt="" class="footer_bg" />
+    <div class="footer_section">
+      <!-- Standard Footer HTML -->
+      <div class="footer_aboutapp">
+        <h2>MegaMart</h2>
+        <div class="footer_aboutapp1">
+          <span class="contact">Contact Us</span>
+          <div class="whatsapp">
+            <div><img src="../img/footer_whatsapp.png" alt="" /></div>
+            <div><span>Whats App</span><p>+1 202-918-2132</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">
+      <p>© 2022 All rights reserved. Reliance Retail Ltd.</p>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Tab Switching Logic
+      const navItems = document.querySelectorAll('.profile-nav-item[data-target]');
+      const panels = document.querySelectorAll('.profile-panel');
+
+      navItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+          e.preventDefault();
+          
+          // Remove active classes
+          navItems.forEach(nav => nav.classList.remove('active'));
+          panels.forEach(panel => panel.style.display = 'none');
+          
+          // Add active class to clicked tab and corresponding panel
+          item.classList.add('active');
+          const targetId = item.getAttribute('data-target');
+          document.getElementById(targetId).style.display = 'block';
+        });
+      });
+    });
+  </script>
+</body>
+</html>

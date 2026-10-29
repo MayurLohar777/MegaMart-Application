@@ -1,0 +1,320 @@
+/*=========================== Header NavBar =============================*/
+
+@media screen and (max-width: 1024px) {
+
+    .header-fluid nav .right_nav {
+        display: none;
+    }
+
+    .header-fluid nav .resp_icon {
+
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 20px;
+    }
+
+    .category-bar {
+        display: none;
+    }
+
+
+}
+
+@media screen and (min-width: 1025px) {
+
+    .header-fluid nav .resp_icon {
+        display: none;
+    }
+
+    .header-fluid nav .right_nav {
+        display: flex;
+    }
+}
+
+
+/* ================= 992px (TABLET ONLY) ================= */
+@media (max-width: 992px) {
+
+    .slider_tag {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        text-align: center;
+        padding: 35px 20px;
+        min-height: 400px;
+    }
+
+    /* ✅ TEXT TOP CENTER */
+    .slider_info {
+        position: absolute;
+        top: 25px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        z-index: 3;
+    }
+
+    .slider_info h2 {
+        font-size: 3.2rem;
+    }
+
+    .slider_info p {
+        font-size: 2.1rem;
+    }
+
+    /* ✅ IMAGE SMALL + BOTTOM CENTER */
+    .slider_tag img.slider1 {
+        position: absolute;
+        bottom: 15px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        max-width: 30%;
+        /* 🔥 smaller for tablet */
+        height: auto;
+        margin: 0;
+        z-index: 2;
+    }
+
+    .slider_tag img.slider2 {
+        position: absolute;
+        bottom: 15px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        max-width: 45%;
+        /* 🔥 smaller for tablet */
+        height: auto;
+        margin: 0;
+        z-index: 2;
+    }
+
+    /* ✅ BACKGROUND SHAPE BEHIND */
+    .slider_tag img:last-child {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        max-width: 60%;
+        z-index: 1;
+    }
+
+    /* ✅ BUTTONS SAME POSITION */
+    #backBtn {
+        left: 15px;
+        width: 45px;
+    }
+
+    #nextBtn {
+        right: 15px;
+        width: 45px;
+    }
+}
+
+
+/*=========================== mobile section =============================*/
+
+
+
+
+
+/*----------  mobile screen  ----------*/
+
+@media (max-width: 575px) {
+
+
+    .mobile_section {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        align-items: center;
+        place-items: center;
+        gap: 40px;
+    }
+
+    .category_section {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        align-items: center;
+        place-items: center;
+        gap: 40px;
+    }
+
+    .brand_section {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        align-items: center;
+        place-items: center;
+        gap: 40px;
+    }
+
+    .food_category {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        align-items: center;
+        place-items: center;
+        gap: 40px;
+    }
+
+    .footer_section {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .footer_bg {
+        display: none;
+    }
+}
+
+/*----------  tablet screen  ----------*/
+
+@media (min-width: 576px) {
+    .mobile_section {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        align-items: center;
+        place-items: center;
+        gap: 40px;
+    }
+
+    .category_section {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        align-items: center;
+        place-items: center;
+        gap: 40px;
+    }
+
+    .brand_section {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        align-items: center;
+        place-items: center;
+        gap: 40px;
+    }
+
+    .food_category {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        flex-direction: column;
+        align-items: center;
+        place-items: center;
+        gap: 40px;
+    }
+
+
+}
+
+/*----------  Destop screen  ----------*/
+
+@media (min-width: 992px) {
+    .mobile_section {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        align-items: center;
+        place-items: center;
+        gap: 40px;
+    }
+
+    .category_section {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        align-items: center;
+        place-items: center;
+        gap: 40px;
+    }
+
+    .brand_section {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        align-items: center;
+        place-items: center;
+        gap: 40px;
+    }
+
+    .food_category {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        align-items: center;
+        place-items: center;
+        gap: 40px;
+    }
+
+
+
+}
+
+@media (max-width:992px) {
+    .footer_section {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .footer_bg {
+        display: none;
+    }
+}
+
+/*---------- lg Destop screen  ----------*/
+
+@media (min-width: 1200px) {
+    .mobile_section {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        align-items: center;
+        place-items: center;
+        gap: 40px;
+    }
+
+    .category_section {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        justify-content: center;
+        align-items: center;
+        place-items: center;
+        gap: 20px;
+    }
+
+    .brand_section {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        align-items: center;
+        place-items: center;
+        gap: 40px;
+    }
+
+    .food_category {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        align-items: center;
+        place-items: center;
+        gap: 40px;
+    }
+
+}
+
+@media (max-width:1200px) {
+    .footer_bg {
+        display: none;
+    }
+}
+
+/* ==================================================
+   MOBILE DRAWER RESPONSIVENESS
+================================================== */
+@media screen and (max-width: 480px) {
+    .mobile-drawer {
+        width: 100%;
+        right: -100%;
+    }
+
+    .mobile-drawer.active {
+        right: 0;
+    }
+}
