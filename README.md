@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # MegaMart — Dynamic Vanilla E-Commerce Application
 
 MegaMart is a lightweight, responsive, and fully dynamic e-commerce frontend application built with semantic HTML5, custom Vanilla CSS, and modular JavaScript. 
@@ -77,3 +78,6 @@ To support custom DOM event binding on SPA navigation:
 
 2. **Creating New Pages**:
    To add a page in the future, link [style.css](file:///d:/Easyskill%20academy/CSS/project%20css%20-%20Copy%20-%20Copy/style.css), [responsive_style.css](file:///d:/Easyskill%20academy/CSS/project%20css%20-%20Copy%20-%20Copy/responsive_style.css), and [script.js](file:///d:/Easyskill%20academy/CSS/project%20css%20-%20Copy%20-%20Copy/script.js). The layout engine will automatically load headers, footers, search, and mobile drawers seamlessly!
+=======
+# MegaMart-Application
+>>>>>>> 535e681468008364eb5de09079a787988014ca35
